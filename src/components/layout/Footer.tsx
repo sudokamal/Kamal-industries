@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin, Phone, Mail, Clock, ArrowRight, MessageCircle,
 } from "lucide-react";
@@ -41,7 +41,6 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Factory Gallery", href: "/gallery" },
-  { label: "Technical Specs", href: "/specifications" },
   { label: "Download Centre", href: "/downloads" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -104,8 +103,8 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             {/* Logo + signage photo */}
             <div className="flex items-center gap-4">
-              <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-white/10 shrink-0">
-                <Image src="/ki-signage.jpeg" alt="Kamal Industries logo" fill className="object-cover" sizes="56px" />
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border border-stone-gold/40 shrink-0">
+                <Image src="/Office.jpeg" alt="Kamal Industries logo" fill className="object-cover" sizes="56px" />
               </div>
               <div>
                 <div className="font-serif text-2xl font-semibold tracking-[0.15em] text-white">KAMAL</div>

@@ -43,12 +43,23 @@ export default function GlobalUI() {
   const [chatMessages, setChatMessages] = useState<Message[]>([
     {
       role: "bot",
-      text: "Hello! I am the Kamal Industries Assistant. Ask me anything about our Kota Stone, sizes, finishes, pricing, delivery, or custom factory orders.",
+      text: "👋 Hello! I am the Kamal Industries AI Assistant.\nHow can I help with your stone requirement today? Pick a quick option below or type your question!",
     },
   ]);
   const [chatInput, setChatInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const [aiUnansweredCount, setAiUnansweredCount] = useState(0);
   const [escalated, setEscalated] = useState(false);
+
+  const QUICK_QUESTIONS = [
+    "📏 Available Sizes & Thickness",
+    "🎨 Colors & Finishes",
+    "🚚 Delivery & Shipping Time",
+    "💰 Wholesale Pricing Quote",
+    "📦 Export Wooden Crates",
+    "📍 Factory Location & Contact",
+    "📄 Request Stone Samples",
+  ];
 
   // Email Support Message State
   const [supportMessage, setSupportMessage] = useState("");
@@ -139,57 +150,59 @@ export default function GlobalUI() {
     window.location.href = "tel:7878492517";
   };
 
-  // AI Chat simulation response logic
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
-
-    const userText = chatInput.trim();
+  // AI Chatbot Knowledge Base & Processor
+  const processUserQuery = (userText: string) => {
     setChatMessages((prev) => [...prev, { role: "user", text: userText }]);
-    setChatInput("");
+    setIsTyping(true);
 
-    // Simulate typing delay
     setTimeout(() => {
       const normalized = userText.toLowerCase();
       let botResponse = "";
       let answered = true;
 
-      // AI Chatbot Knowledge Base Rules
-      if (normalized.includes("kota stone") && (normalized.includes("what") || normalized.includes("about") || normalized.includes("define"))) {
-        botResponse = "Kota Stone is a fine-grained, extremely durable limestone quarried in Ramganjmandi, Kota, Rajasthan. It is highly valued for commercial, residential, and industrial floors due to its density, non-porous structure, and natural cool temperature.";
-      } else if (normalized.includes("size") || normalized.includes("dimension")) {
-        botResponse = "We manufacture Kota Stone in standard sizes: 12×12, 18×18, 22×22, 22×15, 22×11, 24×24, 24×36, and 24×48 inches. Large format slabs are available up to 4×4 feet (or 1200×1200 mm). Custom sizing is cut to specification.";
-      } else if (normalized.includes("color") || normalized.includes("colour") || normalized.includes("blue") || normalized.includes("brown") || normalized.includes("red")) {
-        botResponse = "We supply three core colors:\n1. **Kota Blue**: A signature blue-grey limestone.\n2. **Kota Brown**: A warm earthy-toned brown limestone.\n3. **Mandana Red**: A robust acid-resistant quartzite.";
-      } else if (normalized.includes("finish") || normalized.includes("honed") || normalized.includes("polished") || normalized.includes("leather") || normalized.includes("sandblast") || normalized.includes("flamed")) {
-        botResponse = "We offer 6 surface finishes:\n- **Natural Split**: Raw, textured surface.\n- **Honed**: Smooth matte.\n- **Polished**: Gloss mirror-shine.\n- **Leather / Brushed**: Tactile, contemporary texture.\n- **Sandblasted**: Non-slip rough finish.\n- **Flamed**: Thermal textured outdoor finish.";
-      } else if (normalized.includes("application") || normalized.includes("floor") || normalized.includes("wall") || normalized.includes("outdoor") || normalized.includes("garden") || normalized.includes("stair") || normalized.includes("step")) {
-        botResponse = "Kota Stone is ideal for:\n- High-traffic commercial lobbies\n- Residential living rooms and kitchens\n- Outdoor garden paving and pool decks (Sandblasted/Natural)\n- Stair treads & steps (calibrated load-bearing)\n- Accent wall cladding facades.";
-      } else if (normalized.includes("pack") || normalized.includes("pallet") || normalized.includes("crate")) {
-        botResponse = "For domestic supply, stone is securely loaded loose or packed in strong wooden pallets. For global exports, we pack in fumigated, export-grade seaworthy wooden crates wrapped in plastic wraps to prevent transit cracks.";
-      } else if (normalized.includes("quality") || normalized.includes("inspect") || normalized.includes("tolerance")) {
-        botResponse = "We implement strict piece-by-piece inspection. Slabs are checked for color uniformity (Grade A), structural integrity (no laminations), and cut to a ±1mm thickness calibration tolerance standard.";
-      } else if (normalized.includes("deliver") || normalized.includes("shipping") || normalized.includes("logistics") || normalized.includes("how long")) {
-        botResponse = "We deliver across all states in India. Domestic delivery takes 3-7 days for in-stock sizes, and 7-15 days for custom production cuts. International ocean transit via Mundra/Kandla takes 2-4 weeks.";
-      } else if (normalized.includes("price") || normalized.includes("pricing") || normalized.includes("cost") || normalized.includes("quote") || normalized.includes("wholesale")) {
-        botResponse = "Because you buy directly from our Ramganjmandi factory yard, we offer the most competitive wholesale prices. Contact us with your exact dimensions, thickness, and total sq.ft to receive a custom quote within 24 hours.";
-      } else if (normalized.includes("export") || normalized.includes("international") || normalized.includes("mundra") || normalized.includes("kandla")) {
-        botResponse = "Our export division (Kamal Enterprises) coordinates shipping via Mundra & Kandla ports. We manage all documentation, customs clearance, and deliver seaworthy fumigated wooden crates to any global destination.";
-      } else if (normalized.includes("factory") || normalized.includes("location") || normalized.includes("ramganjmandi") || normalized.includes("where")) {
-        botResponse = "Our manufacturing yard is located at Amarpura, Ramganjmandi, District Kota, Rajasthan – 326519, India. We have been processing natural stone at this facility since 1985.";
-      } else if (normalized.includes("custom") || normalized.includes("cnc") || normalized.includes("drawing")) {
-        botResponse = "Yes! We specialize in custom-cut stone. Send us your architectural drawings, and our CNC machinery will cut slabs, stair treads, pool copings, or steps to your exact dimensions.";
+      if (normalized.includes("size") || normalized.includes("dimension") || normalized.includes("thick")) {
+        botResponse = "📏 **Kota Stone Sizes & Thickness Options**:\n\n• **Standard Tiles**: 12×12, 12×18, 18×18, 18×24, 24×24, 24×36, 24×48 inches.\n• **Jumbo Slabs**: Up to 4×4 ft (1200×1200 mm) & 4×8 ft.\n• **Calibrated Thickness**: 18mm, 20mm, 25mm, 30mm, 40mm (±1mm tolerance).\n• **Custom Cut**: Tailored to architectural drawings.";
+      } else if (normalized.includes("color") || normalized.includes("colour") || normalized.includes("blue") || normalized.includes("brown") || normalized.includes("red") || normalized.includes("finish")) {
+        botResponse = "🎨 **Colors & Surface Finishes**:\n\n💎 **Stone Types**:\n1. **Kota Blue Stone**: Blue-grey limestone benchmark.\n2. **Kota Brown Stone**: Warm earthy limestone.\n3. **Mandana Red Stone**: Acid-resistant quartzite.\n\n✨ **Finishes Available**:\n• Natural Split (Rustic texture)\n• Honed (Silky matte)\n• Polished (High gloss)\n• Leather/Brushed (Modern tactile)\n• Sandblasted (Non-slip wet areas)\n• Flamed (Textured outdoor)";
+      } else if (normalized.includes("deliver") || normalized.includes("ship") || normalized.includes("transit") || normalized.includes("time") || normalized.includes("how long")) {
+        botResponse = "🚚 **Delivery Timelines & Logistics**:\n\n• **Pan-India Dispatch**: 3 to 7 business days for stock sizes.\n• **Custom Production**: 7 to 14 business days.\n• **Global Exports**: Ocean freight via Mundra & Kandla ports (2-4 weeks transit).\n\nAll shipments are fully insured from our Ramganjmandi yard.";
+      } else if (normalized.includes("price") || normalized.includes("cost") || normalized.includes("quote") || normalized.includes("wholesale") || normalized.includes("rate") || normalized.includes("sq.ft")) {
+        botResponse = "💰 **Direct Wholesale Factory Pricing**:\n\nBecause you buy directly from our Ramganjmandi production campus, you get direct wholesale pricing with zero middleman markup!\n\nTo get a binding quote within 24 hours, specify:\n1. Stone color & finish\n2. Size & thickness\n3. Total quantity (sq.ft / sq.m)\n4. Destination city/port.";
+      } else if (normalized.includes("pack") || normalized.includes("crate") || normalized.includes("pallet") || normalized.includes("export")) {
+        botResponse = "📦 **Seaworthy Wooden Crate Packing**:\n\n• **Domestic**: Reinforced wooden pallets with plastic wrapping.\n• **International Exports**: ISPM-15 fumigated wooden crates with plastic film, corner protectors, and heavy-duty steel strapping.\n• **Zero Breakage Guarantee**: Piece-by-piece inspection before loading.";
+      } else if (normalized.includes("factory") || normalized.includes("location") || normalized.includes("where") || normalized.includes("address") || normalized.includes("ramganjmandi")) {
+        botResponse = "📍 **Factory & Office Campus**:\n\n• **Address**: 15-Acre Processing Campus, Amarpura, Ramganjmandi, District Kota, Rajasthan – 326519, India.\n• **Helpline**: +91 78784 92517 / +91 92148 30464\n• **Established**: Direct stone processing since 1985.";
+      } else if (normalized.includes("sample") || normalized.includes("specimen") || normalized.includes("box")) {
+        botResponse = "📄 **Stone Sample Box Program**:\n\nWe provide physical sample boxes (Kota Blue, Kota Brown, Mandana Red in various finishes) for architects, contractors, and project managers.\n\nWhatsApp us at **+91 92148 30464** with your office address to request a sample box!";
+      } else if (normalized.includes("kota stone") || normalized.includes("limestone") || normalized.includes("what is")) {
+        botResponse = "🏛️ **About Kamal Kota Stone**:\n\nKota Stone is a fine-grained, non-porous limestone from Ramganjmandi, Rajasthan. Famous for its extreme durability, cool natural touch, high compressive strength (130-180 MPa), and low water absorption (<0.5%).";
+      } else if (normalized.includes("custom") || normalized.includes("cnc") || normalized.includes("stair") || normalized.includes("step") || normalized.includes("wall") || normalized.includes("cladding")) {
+        botResponse = "🔨 **Custom Architectural Fabrication**:\n\nWe specialize in custom CNC waterjet cutting for stair treads, risers, pool copings, and split-face wall cladding panels. Send us your CAD drawings for custom cutting!";
       } else {
         answered = false;
-        botResponse = "I want to make sure you get the most accurate details. I can escalate your query directly to our Live Support Team. Would you like me to email your question to our factory coordinator?";
+        botResponse = "I want to ensure you get the most accurate information! I can escalate your query directly to our Live Factory Coordinator. Would you like me to email your details to our sales desk?";
       }
 
+      setIsTyping(false);
       setChatMessages((prev) => [...prev, { role: "bot", text: botResponse }]);
 
       if (!answered) {
         setAiUnansweredCount((prev) => prev + 1);
       }
-    }, 800);
+    }, 600);
+  };
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim() || isTyping) return;
+    const text = chatInput.trim();
+    setChatInput("");
+    processUserQuery(text);
+  };
+
+  const handleQuickQuestionClick = (question: string) => {
+    if (isTyping) return;
+    processUserQuery(question);
   };
 
   // Escalate unanswered AI chat to Admin Email
@@ -552,35 +565,61 @@ export default function GlobalUI() {
                                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                               >
                                 <div
-                                  className={`max-w-[80%] rounded-xl px-4 py-3 leading-relaxed
-                                    ${
-                                      msg.role === "user"
-                                        ? "bg-primary text-white rounded-tr-none shadow-md"
-                                        : "bg-white/8 text-white/90 border border-white/5 rounded-tl-none"
-                                    }
-                                  `}
+                                  className={`max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed shadow-sm ${
+                                    msg.role === "user"
+                                      ? "bg-primary text-white rounded-tr-none shadow-md"
+                                      : "bg-white/10 text-white/95 border border-white/10 rounded-tl-none"
+                                  }`}
                                 >
                                   {msg.text.split("\n").map((para, i) => (
-                                    <p key={i} className={i > 0 ? "mt-2" : ""}>
+                                    <p key={i} className={i > 0 ? "mt-1.5" : ""}>
                                       {para}
                                     </p>
                                   ))}
                                 </div>
                               </div>
                             ))}
+
+                            {/* Typing Indicator */}
+                            {isTyping && (
+                              <div className="flex justify-start">
+                                <div className="bg-white/10 text-white/70 border border-white/10 rounded-2xl rounded-tl-none px-4 py-2.5 flex items-center gap-1.5">
+                                  <span className="text-[10px] text-stone-gold font-bold uppercase tracking-wider font-sans">
+                                    AI is typing
+                                  </span>
+                                  <span className="w-1.5 h-1.5 bg-stone-gold rounded-full animate-bounce [animation-delay:-0.3s]" />
+                                  <span className="w-1.5 h-1.5 bg-stone-gold rounded-full animate-bounce [animation-delay:-0.15s]" />
+                                  <span className="w-1.5 h-1.5 bg-stone-gold rounded-full animate-bounce" />
+                                </div>
+                              </div>
+                            )}
                             <div ref={chatEndRef} />
+                          </div>
+
+                          {/* Quick Question Chips */}
+                          <div className="px-3 py-2 bg-slate-950/80 border-t border-white/10 flex gap-2 overflow-x-auto no-scrollbar shrink-0">
+                            {QUICK_QUESTIONS.map((q, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => handleQuickQuestionClick(q)}
+                                disabled={isTyping}
+                                className="whitespace-nowrap text-[10px] font-sans font-medium bg-white/5 hover:bg-stone-gold/20 text-stone-gold border border-stone-gold/30 rounded-full px-3 py-1 transition-all cursor-pointer disabled:opacity-50 shrink-0"
+                              >
+                                {q}
+                              </button>
+                            ))}
                           </div>
 
                           {/* Fallback Live Escalation Trigger */}
                           {aiUnansweredCount >= 2 && !escalated && (
-                            <div className="bg-slate-950/80 border-t border-white/10 p-3 flex items-center justify-between gap-3 shrink-0">
+                            <div className="bg-slate-950/90 border-t border-white/10 p-3 flex items-center justify-between gap-3 shrink-0">
                               <span className="text-[10px] text-stone-gold font-sans leading-tight">
                                 Talk directly to our coordinator via email?
                               </span>
                               <button
                                 onClick={handleEscalateChat}
                                 disabled={isSending}
-                                className="bg-stone-gold hover:bg-stone-gold-dark text-slate-950 text-[9px] font-bold uppercase tracking-wider px-3 py-1.5 rounded transition-colors cursor-pointer shrink-0"
+                                className="bg-stone-gold hover:bg-stone-gold-dark text-slate-950 text-[9px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer shrink-0"
                               >
                                 {isSending ? "Sending..." : "Email Coordinator"}
                               </button>
@@ -588,17 +627,19 @@ export default function GlobalUI() {
                           )}
 
                           {/* Chat Input form */}
-                          <form onSubmit={handleSendMessage} className="p-3 border-t border-white/10 bg-slate-950/60 flex gap-2 shrink-0">
+                          <form onSubmit={handleSendMessage} className="p-3 border-t border-white/10 bg-slate-950/90 flex gap-2 shrink-0">
                             <input
                               type="text"
                               value={chatInput}
                               onChange={(e) => setChatInput(e.target.value)}
-                              placeholder="Ask about sizes, finishes, colors..."
-                              className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-stone-gold/60 focus:bg-white/8 transition-all font-sans"
+                              placeholder="Ask about sizes, colors, pricing, delivery..."
+                              disabled={isTyping}
+                              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-stone-gold/60 focus:bg-white/8 transition-all font-sans disabled:opacity-50"
                             />
                             <button
                               type="submit"
-                              className="w-9 h-9 rounded-lg bg-stone-gold hover:bg-stone-gold-dark text-slate-950 flex items-center justify-center shrink-0 cursor-pointer transition-colors"
+                              disabled={isTyping || !chatInput.trim()}
+                              className="w-9 h-9 rounded-xl bg-stone-gold hover:bg-stone-gold-dark disabled:opacity-40 text-slate-950 flex items-center justify-center shrink-0 cursor-pointer transition-colors"
                               aria-label="Send message"
                             >
                               <Send size={14} />
@@ -677,6 +718,25 @@ export default function GlobalUI() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* ── PERSISTENT FLOATING WHATSAPP BUTTON ── */}
+      <div className="fixed bottom-6 left-6 z-40 group">
+        <a
+          href="https://wa.me/919214830464?text=Hello%20Kamal%20Industries%2C%20I%20am%20interested%20in%20a%20quote%20for%20Kota%20Stone."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-black/40 hover:bg-[#20ba5a] hover:scale-110 transition-all duration-300 group"
+          aria-label="Chat on WhatsApp with Kamal Industries"
+        >
+          <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none" />
+          <MessageCircle className="w-6 h-6 md:w-7 md:h-7 relative z-10 fill-current" />
+          
+          {/* Tooltip */}
+          <span className="absolute left-16 whitespace-nowrap bg-neutral-dark/95 text-stone-gold text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg border border-stone-gold/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none hidden md:block">
+            WhatsApp Inquiry
+          </span>
+        </a>
       </div>
     </>
   );

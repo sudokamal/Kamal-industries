@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import {
   MapPin, Phone, Mail, Clock, MessageCircle,
   Navigation, ExternalLink, CheckCircle2, Send, User,
@@ -217,6 +216,9 @@ export default function ContactPage() {
     if (!form.phone.trim()) newErrors.phone = "Phone number is required";
     if (!form.stoneType) newErrors.stoneType = "Please select a stone type";
     if (!form.quantity.trim()) newErrors.quantity = "Quantity is required";
+    if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      newErrors.email = "Please enter a valid email address";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -252,16 +254,8 @@ export default function ContactPage() {
       {/* ══════════════════════════════════════════════════════════════
           HERO HEADER — uses 02.jpeg (office photo)
           ══════════════════════════════════════════════════════════════ */}
-      <section className="relative py-28 md:py-36 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/02.jpeg"
-            alt="Kamal Industries office — Amarpura, Ramganjmandi, Kota, Rajasthan"
-            fill priority className="object-cover" sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/80 to-charcoal/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/30" />
-        </div>
+      <section className="relative py-28 md:py-36 overflow-hidden bg-charcoal">
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-neutral-dark to-charcoal" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-4 block font-sans">
             Get in Touch · Factory Direct
@@ -285,6 +279,10 @@ export default function ContactPage() {
             <a href="tel:+919214830464"
               className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold tracking-widest uppercase px-5 py-3 rounded-xl hover:bg-primary-dark transition-colors font-sans shadow-lg">
               <Phone size={15} /> Call Now
+            </a>
+            <a href="/Kamal_Industries_Kota_Stone_Catalogue.pdf" download="Kamal_Industries_Kota_Stone_Catalogue.pdf" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white/10 border border-stone-gold/40 text-stone-gold text-[11px] font-bold tracking-widest uppercase px-5 py-3 rounded-xl hover:bg-white/20 transition-colors font-sans backdrop-blur-sm shadow-lg">
+              Download Catalogue (PDF)
             </a>
             <a href="mailto:kamalindustriesfactory@gmail.com"
               className="inline-flex items-center gap-2 bg-stone-gold text-neutral-dark text-[11px] font-bold tracking-widest uppercase px-5 py-3 rounded-xl hover:bg-stone-gold/90 transition-colors font-sans shadow-lg">
@@ -793,17 +791,10 @@ export default function ContactPage() {
 
 
       {/* ══════════════════════════════════════════════════════════════
-          FACTORY VISIT SECTION — uses 02.jpeg
+          FACTORY VISIT SECTION
           ══════════════════════════════════════════════════════════════ */}
-      <section id="factory-visit" className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/02.jpeg"
-            alt="Kamal Industries office and factory — visit us at Amarpura, Ramganjmandi"
-            fill className="object-cover" sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/80 to-charcoal/50" />
-        </div>
+      <section id="factory-visit" className="relative py-24 md:py-32 overflow-hidden bg-charcoal">
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-neutral-dark to-charcoal" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl space-y-7">
             <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold block font-sans">
@@ -866,22 +857,7 @@ export default function ContactPage() {
       </section>
 
 
-      {/* ══════════════════════════════════════════════════════════════
-          PHOTO STRIP
-          ══════════════════════════════════════════════════════════════ */}
-      <div className="grid grid-cols-2 md:grid-cols-4 h-44 md:h-52">
-        {[
-          { src: "/03.jpeg", alt: "Kamal Industries factory overview" },
-          { src: "/cutting-machine-1.jpeg", alt: "Stone cutting at Kamal Industries" },
-          { src: "/kota-blue-1.jpeg", alt: "Kota Blue Stone stock" },
-          { src: "/workers-loading-1.jpeg", alt: "Loading and dispatch at Kamal Industries" },
-        ].map((img) => (
-          <div key={img.src} className="relative overflow-hidden group img-zoom-container">
-            <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="25vw" />
-            <div className="absolute inset-0 bg-charcoal/30 group-hover:bg-charcoal/10 transition-colors" />
-          </div>
-        ))}
-      </div>
+
 
 
       {/* ══════════════════════════════════════════════════════════════

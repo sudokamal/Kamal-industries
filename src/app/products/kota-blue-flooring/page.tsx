@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Buy Kota Blue Stone flooring tiles direct from the manufacturer — Kamal Industries, Ramganjmandi. Dense blue-grey limestone for interior flooring, exterior paving, terraces, and commercial lobbies. Custom sizes available.",
     images: [
       {
-        url: "/kota-blue-1.jpeg",
+        url: "/Kota Blue Stone.jpeg",
         width: 1200,
         height: 630,
         alt: "Kota Blue Stone Flooring tiles stacked at factory",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Kota Blue Stone Flooring — Factory Direct | Kamal Industries",
     description:
       "Buy Kota Blue Stone flooring tiles direct from the manufacturer — Kamal Industries, Ramganjmandi.",
-    images: ["/kota-blue-1.jpeg"],
+    images: ["/Kota Blue Stone.jpeg"],
   },
 };
 
@@ -41,21 +41,19 @@ const data: ProductDetailData = {
   titleAccent: "Flooring Tiles",
   subtitle:
     "Dense, naturally slip-resistant blue-grey limestone tiles. Machine-calibrated to ±1mm for seamless installation — the benchmark choice for Indian commercial and residential flooring.",
-  heroImage: "/kota-blue-1.jpeg",
+  heroImage: "/Kota Blue Stone.jpeg",
   breadcrumb: "Kota Blue Stone Flooring",
   whatsappText:
-    "Hello, I am interested in Kota Blue Stone Flooring tiles. Please share your price list and available sizes.",
+    "Hello, I am interested in Kota Blue Stone Flooring. Please share your price list and available sizes.",
   contactParam: "Kota+Blue+Stone+Flooring",
 
   gallery: [
-    { src: "/kota-blue-1.jpeg", alt: "Kota Blue Stone flooring tiles stacked at Kamal Industries factory" },
-    { src: "/kota-blue-2.jpeg", alt: "Kota Blue Stone quality batch ready for dispatch" },
-    { src: "/kota-blue-3.jpeg", alt: "Kota Blue Stone yard — calibrated flooring tiles" },
-    { src: "/111.jpeg",         alt: "Large stack of Kota Blue Stone flooring at factory" },
-    { src: "/1.jpeg",           alt: "Aerial view of Kota Blue Stone tiles stacked in yard" },
-    { src: "/kota-stone-1.jpeg",alt: "Kota Stone flooring ready for installation" },
-    { src: "/22.jpeg",          alt: "Kota Blue Stone wall — close-up of split-face texture" },
-    { src: "/44.jpeg",          alt: "Stacked Kota Blue Stone tiles — bulk stock" },
+    { src: "/Kota Blue Stone.jpeg", alt: "Kota Blue Stone flooring tiles — classic blue-grey limestone" },
+    { src: "/Gallery2.jpeg", alt: "Calibrated Kota Blue Stone tiles lot" },
+    { src: "/Gallery3.jpeg", alt: "Polished Kota Blue limestone flooring" },
+    { src: "/Gallery21.jpeg", alt: "Honed surface finish Kota Blue stone" },
+    { src: "/Gallery22.jpeg", alt: "Natural split texture Kota Blue slab" },
+    { src: "/Quality.jpeg", alt: "Quality inspection of Kota Blue Stone" },
   ],
 
   description:
@@ -106,19 +104,19 @@ const data: ProductDetailData = {
       name: "Kota Blue Stone Slabs",
       tagline: "Large format slabs for premium architectural projects",
       href: "/products/kota-blue-slabs",
-      image: "/kota-slab-2.jpeg",
+      image: "/Large Format Slabs.jpeg",
     },
     {
       name: "Kota Brown Stone Flooring",
       tagline: "Warm earthy tones — the premium brown variant",
       href: "/products/kota-brown-flooring",
-      image: "/kota-stone-1.jpeg",
+      image: "/Kota Brown Stone.jpeg",
     },
     {
       name: "Kota Stone Steps & Stair Treads",
       tagline: "Calibrated step stone with natural slip resistance",
       href: "/products/stone-steps",
-      image: "/steps-1.jpeg",
+      image: "/Stairs.jpeg",
     },
   ],
 };

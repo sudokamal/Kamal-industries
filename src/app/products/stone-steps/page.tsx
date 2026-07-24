@@ -3,9 +3,9 @@ import ProductDetailPage from "@/components/products/ProductDetailPage";
 import type { ProductDetailData } from "@/components/products/ProductDetailPage";
 
 export const metadata: Metadata = {
-  title: "Kota Stone Steps & Stair Treads — Factory Direct | Kamal Industries",
+  title: "Kota Stone Steps & Stair Treads | Kamal Industries",
   description:
-    "Buy Kota Stone steps and stair treads directly from the manufacturer — Kamal Industries, Ramganjmandi. Calibrated step stone with natural slip resistance for all staircases. Custom sizes available.",
+    "Buy calibrated Kota Stone step treads and risers direct from Kamal Industries, Ramganjmandi. Heavy load-bearing, anti-slip step stone in custom lengths for commercial and residential staircases.",
   alternates: {
     canonical: "https://kamalindustries.in/products/stone-steps",
   },
@@ -14,52 +14,47 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://kamalindustries.in/products/stone-steps",
     siteName: "Kamal Industries & Enterprises",
-    title: "Kota Stone Steps & Stair Treads — Factory Direct | Kamal Industries",
+    title: "Kota Stone Steps & Stair Treads | Kamal Industries",
     description:
-      "Buy Kota Stone steps and stair treads directly from the manufacturer — Kamal Industries, Ramganjmandi. Calibrated step stone with natural slip resistance for all staircases. Custom sizes available.",
+      "Buy calibrated Kota Stone step treads and risers direct from Kamal Industries, Ramganjmandi.",
     images: [
       {
-        url: "/steps-1.jpeg",
+        url: "/Stairs.jpeg",
         width: 1200,
         height: 630,
-        alt: "Kota Stone step slabs loaded at Kamal Industries yard",
+        alt: "Kota Stone steps and stair treads at factory",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kota Stone Steps & Stair Treads — Factory Direct | Kamal Industries",
+    title: "Kota Stone Steps & Stair Treads | Kamal Industries",
     description:
-      "Buy Kota Stone steps and stair treads directly from the manufacturer — Kamal Industries, Ramganjmandi.",
-    images: ["/steps-1.jpeg"],
+      "Buy calibrated Kota Stone step treads and risers direct from Kamal Industries, Ramganjmandi.",
+    images: ["/Stairs.jpeg"],
   },
 };
 
 const data: ProductDetailData = {
-  badge: "Calibrated Step Stone · Factory Direct",
+  badge: "Anti-Slip · High Load Bearing",
   title: "Kota Stone Steps",
   titleAccent: "& Stair Treads",
   subtitle:
-    "Kota Stone is one of the finest natural materials for stair treads — inherently slip-resistant, extremely hard, and able to withstand decades of heavy foot traffic without abrasion.",
-  heroImage: "/steps-1.jpeg",
-  breadcrumb: "Stone Steps & Stair Treads",
+    "Calibrated stair treads and risers — naturally slip-resistant, load-bearing, and available in all standard and custom dimensions for residential and commercial staircases.",
+  heroImage: "/Stairs.jpeg",
+  breadcrumb: "Steps & Stair Treads",
   whatsappText:
-    "Hello, I am interested in Kota Stone Steps and Stair Treads. Please share your price list and available sizes.",
+    "Hello, I am interested in Kota Stone Steps & Stair Treads. Please share sizes and pricing.",
   contactParam: "Kota+Stone+Steps",
 
   gallery: [
-    { src: "/steps-1.jpeg",       alt: "Kota Stone stair treads at Kamal Industries factory" },
-    { src: "/steps-2.jpeg",       alt: "Calibrated step stone ready for dispatch" },
-    { src: "/steps-3.jpeg",       alt: "Kota Stone steps — quality batch at factory" },
-    { src: "/steps-4.jpeg",       alt: "Kota Stone step stone stock yard" },
-    { src: "/cutting-machine-2.jpeg", alt: "Precision stone step cutting at factory" },
-    { src: "/kota-blue-1.jpeg",   alt: "Kota Blue Stone slabs used for steps" },
-    { src: "/factory-yard-2.jpeg",alt: "Factory yard — step stone stock at Kamal Industries" },
-    { src: "/88.jpeg",            alt: "Cutting machine producing step stone" },
+    { src: "/Stairs.jpeg", alt: "Kota Stone steps and stair treads stacked in yard" },
+    { src: "/Gallery14.jpeg", alt: "Calibrated Kota Stone stair tread slabs" },
+    { src: "/Gallery10.jpeg", alt: "Master stone cutter profiling stair tread edges" },
   ],
 
   description:
-    "Kota Stone is one of the finest natural materials for stair treads, owing to its inherent slip resistance, hardness, and ability to withstand decades of heavy foot traffic without abrasion. Our stair stone is supplied in full step sizes — riser and tread — cut to standard or custom dimensions, with a variety of edge profiles available on request. Both Kota Blue and Kota Brown varieties are available, allowing architects to match stair stone to the surrounding flooring.",
+    "Kota Stone is one of the finest natural materials for stair treads, owing to its inherent slip resistance, hardness, and ability to withstand decades of heavy foot traffic without abrasion. Our stair stone is supplied in full step sizes — riser and tread — cut to standard or custom dimensions, with a variety of edge profiles available on request.",
 
   sizes: [
     "4 inch × 12 inch (riser)",
@@ -68,59 +63,41 @@ const data: ProductDetailData = {
     "Custom widths & lengths",
   ],
   thickness: ["30mm", "40mm", "50mm", "60mm", "Custom"],
-  finishes: ["Natural Split", "Honed", "Sandblasted", "Flamed"],
+  finishes: ["Natural Split", "Honed", "Sandblasted"],
 
   features: [
-    "Inherent natural slip resistance — no anti-slip treatment needed",
-    "Extremely hard and dense — withstands decades of heavy foot traffic",
-    "Available in full step sizes — riser and tread cut to specification",
-    "Multiple edge profiles — bullnose, chamfered, beveled, square",
-    "Available in Kota Blue or Kota Brown to match surrounding flooring",
-    "Consistent colour matching across large batches for uniform staircases",
-    "Custom widths and lengths from our factory cutting facility",
-    "50+ year service life with zero special maintenance",
+    "Inherent anti-slip surface — safe for wet & dry staircases",
+    "Heavy load-bearing capacity — will not crack or chip under foot traffic",
+    "Full-step single piece treads up to 5 feet long",
+    "Choice of edge profiles — bullnose, bevelled, pencil edge",
+    "Factory direct custom length cutting",
   ],
 
   specs: [
-    { label: "Stone Type",           value: "Fine-grained Kota Limestone" },
-    { label: "Colour",               value: "Blue-grey (Kota Blue) or Brown-tan (Kota Brown)" },
-    { label: "Riser Size",           value: "4 inch × 12 inch (standard), Custom" },
-    { label: "Tread Sizes",          value: "12×36 in, 12×48 in, Custom widths & lengths" },
-    { label: "Tread Thickness",      value: "30mm, 40mm, 50mm, 60mm, Custom" },
-    { label: "Edge Profiles",        value: "Square, Bullnose, Half-Bullnose, Chamfered" },
-    { label: "Slip Resistance",      value: "Excellent (natural split surface)" },
-    { label: "Compressive Strength", value: "130 – 180 MPa" },
-    { label: "Water Absorption",     value: "< 0.5%" },
-    { label: "Frost Resistance",     value: "Excellent" },
-    { label: "Mohs Hardness",        value: "3 – 4" },
-    { label: "Service Life",         value: "50+ years under heavy traffic" },
+    { label: "Stone Type",           value: "Limestone Step Treads" },
+    { label: "Standard Tread Size",  value: "12 × 36, 12 × 48, 12 × 60 inches" },
+    { label: "Standard Riser Size",  value: "6 × 36, 6 × 48, 6 × 60 inches" },
+    { label: "Thickness Range",      value: "30mm to 60mm" },
+    { label: "Compressive Strength", value: "140 – 180 MPa" },
   ],
 
   applications: [
-    "Residential Staircases", "Commercial Staircases", "Public Buildings",
-    "Outdoor Steps", "Garden Terracing", "Hotel Lobbies",
-    "Hospital & School Stairs", "Heritage Buildings", "Entrance Steps",
-    "Podium Steps", "Industrial Staircases", "Landscape Steps",
+    "Indoor Staircases", "Outdoor Entrance Steps", "Commercial Building Stairs",
+    "Public Transport Steps", "Garden Terracing Steps", "Villa Staircases",
   ],
 
   related: [
     {
       name: "Kota Blue Stone Flooring",
-      tagline: "Classic blue-grey — match with your flooring",
+      tagline: "Classic blue-grey limestone flooring",
       href: "/products/kota-blue-flooring",
-      image: "/kota-blue-1.jpeg",
+      image: "/Kota Blue Stone.jpeg",
     },
     {
-      name: "Kota Brown Stone Flooring",
-      tagline: "Warm earthy tones — match with brown flooring",
-      href: "/products/kota-brown-flooring",
-      image: "/kota-stone-1.jpeg",
-    },
-    {
-      name: "Custom Cut Stone",
-      tagline: "Bespoke sizing for architects and contractors",
-      href: "/products/custom-cut",
-      image: "/cutting-machine-1.jpeg",
+      name: "Kota Blue Stone Slabs",
+      tagline: "Large format slabs for architectural projects",
+      href: "/products/kota-blue-slabs",
+      image: "/Large Format Slabs.jpeg",
     },
   ],
 };

@@ -39,7 +39,8 @@ async function sendSupportViaResend(toEmail: string, subject: string, html: stri
 // Helper to create the SMTP transporter
 function createTransporter(): Transporter {
   const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const rawPass = process.env.GMAIL_APP_PASSWORD || "";
+  const pass = rawPass.replace(/\s+/g, "");
 
   console.log("[Support API] Checking SMTP environment variables...");
   console.log(`[Support API] GMAIL_USER: ${user ? "LOADED" : "MISSING"}`);
@@ -56,8 +57,11 @@ function createTransporter(): Transporter {
   return nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
-    secure: false, // true for port 465, false for port 587 (STARTTLS)
+    secure: false, // TLS port 587
     auth: { user, pass },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 }
 
@@ -213,7 +217,7 @@ export async function POST(request: NextRequest) {
       </html>
     `;
 
-    const adminEmail = "kamalmalav133@gmail.com";
+    const adminEmail = process.env.GMAIL_USER || "kamalindustriesfactory@gmail.com";
 
     // ─── RESEND API EMAIL ROUTE ───
     if (isResendActive()) {

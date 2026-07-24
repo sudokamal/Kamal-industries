@@ -72,7 +72,7 @@ export const metadata: Metadata = {
       "Direct manufacturer of Kota Blue Stone, Kota Brown Stone, Mandana Stone, flooring slabs, wall cladding, and custom stone. Amarpura, Ramganjmandi, Kota, Rajasthan.",
     images: [
       {
-        url: "/hero-1.jpeg",
+        url: "/HomePage.jpeg",
         width: 1200,
         height: 630,
         alt: "Kamal Industries Kota Stone factory yard, Amarpura, Ramganjmandi",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "Kamal Industries | Kota Stone Manufacturer",
     description:
       "Direct Kota Stone manufacturer in Ramganjmandi, Kota, Rajasthan. Kota Blue, Brown, Mandana Stone, custom cut.",
-    images: ["/hero-1.jpeg"],
+    images: ["/HomePage.jpeg"],
   },
 };
 
@@ -100,7 +100,7 @@ const schemaOrg = {
       url: "https://kamalindustries.in",
       logo: {
         "@type": "ImageObject",
-        url: "https://kamalindustries.in/ki-signage.jpeg",
+        url: "https://kamalindustries.in/Office.jpeg",
         width: 400,
         height: 200,
       },
@@ -137,7 +137,7 @@ const schemaOrg = {
       "@type": "LocalBusiness",
       "@id": "https://kamalindustries.in/#localbusiness",
       name: "Kamal Industries",
-      image: "https://kamalindustries.in/hero-1.jpeg",
+      image: "https://kamalindustries.in/HomePage.jpeg",
       "@context": "https://schema.org",
       priceRange: "₹₹",
       telephone: "+91-92148-30464",

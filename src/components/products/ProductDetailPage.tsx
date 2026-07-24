@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import {
   CheckCircle2, ArrowRight, MessageCircle, Phone, Download,
-  X, ChevronLeft, ChevronRight, Layers, Ruler, Sparkles, ExternalLink,
+  Layers, Ruler, Sparkles, ExternalLink, X, ZoomIn, ChevronLeft, ChevronRight,
 } from "lucide-react";
 
 /* ─────────────────── Types ─────────────────── */
@@ -13,7 +13,7 @@ export interface RelatedProduct {
   name: string;
   tagline: string;
   href: string;
-  image: string;
+  image?: string;
 }
 
 export interface ProductDetailData {
@@ -22,12 +22,12 @@ export interface ProductDetailData {
   title: string;
   titleAccent: string;
   subtitle: string;
-  heroImage: string;
+  heroImage?: string;
   whatsappText: string;
   contactParam: string;
 
   /* Gallery */
-  gallery: { src: string; alt: string }[];
+  gallery?: { src: string; alt: string }[];
 
   /* Overview */
   description: string;
@@ -47,437 +47,346 @@ export interface ProductDetailData {
   related: RelatedProduct[];
 }
 
-/* ─────────────────── Lightbox ─────────────────── */
-function Lightbox({
-  images, index, onClose, onPrev, onNext,
-}: {
-  images: { src: string; alt: string }[];
-  index: number;
-  onClose: () => void;
-  onPrev: () => void;
-  onNext: () => void;
-}) {
-  return (
-    <div
-      className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center"
-      onClick={onClose}
-    >
-      <button
-        onClick={(e) => { e.stopPropagation(); onClose(); }}
-        className="absolute top-5 right-5 text-white/60 hover:text-white transition-colors"
-      >
-        <X size={28} />
-      </button>
-      <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-4 text-white/60 hover:text-white transition-colors p-2"
-      >
-        <ChevronLeft size={36} />
-      </button>
-      <button
-        onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-4 text-white/60 hover:text-white transition-colors p-2"
-      >
-        <ChevronRight size={36} />
-      </button>
-      <div
-        className="relative w-full max-w-4xl mx-8 aspect-[4/3]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Image
-          src={images[index].src}
-          alt={images[index].alt}
-          fill
-          className="object-contain"
-          sizes="100vw"
-          priority
-        />
-      </div>
-      <div className="absolute bottom-5 text-white/40 text-xs font-sans tracking-widest">
-        {index + 1} / {images.length}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────── Main Component ─────────────────── */
 export default function ProductDetailPage({ data }: { data: ProductDetailData }) {
+  const [activeImage, setActiveImage] = useState(data.heroImage || (data.gallery && data.gallery[0]?.src) || "/Kota Blue Stone.jpeg");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const openLightbox = (i: number) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
-  const prevImage = () =>
-    setLightboxIndex((i) => (i === null ? 0 : (i - 1 + data.gallery.length) % data.gallery.length));
-  const nextImage = () =>
-    setLightboxIndex((i) => (i === null ? 0 : (i + 1) % data.gallery.length));
+  const whatsappUrl = `https://wa.me/919214830464?text=${encodeURIComponent(data.whatsappText)}`;
+  const cataloguePdfPath = "/Kamal_Industries_Kota_Stone_Catalogue.pdf";
 
-  const waHref = `https://wa.me/919214830464?text=${encodeURIComponent(data.whatsappText)}`;
+  const galleryItems = data.gallery || [
+    { src: activeImage, alt: data.title },
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-
-      {/* ══════════════ HERO ══════════════ */}
-      <section className="relative bg-charcoal text-white py-24 md:py-36 overflow-hidden">
-        <div className="absolute inset-0">
+    <div className="min-h-screen bg-white">
+      {/* ══════════════ 1. HERO HEADER ══════════════ */}
+      <section className="relative bg-neutral-dark text-white pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
-            src={data.heroImage}
-            alt={`${data.title} ${data.titleAccent} — Kamal Industries`}
-            fill priority
-            className="object-cover opacity-25"
+            src={activeImage}
+            alt={data.title}
+            fill
+            priority
+            className="object-cover opacity-30"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/98 via-charcoal/80 to-charcoal/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-dark via-neutral-dark/90 to-neutral-dark/60" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-[10px] text-white/40 uppercase tracking-widest mb-10 font-sans flex-wrap">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Breadcrumbs */}
+          <nav className="flex items-center gap-2 text-[11px] font-sans text-stone-400 mb-8 uppercase tracking-widest">
             <Link href="/" className="hover:text-stone-gold transition-colors">Home</Link>
             <span>/</span>
             <Link href="/products" className="hover:text-stone-gold transition-colors">Products</Link>
             <span>/</span>
-            <span className="text-stone-gold">{data.breadcrumb}</span>
+            <span className="text-stone-gold font-bold">{data.breadcrumb}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left — Text */}
-            <div>
-              <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-4 block font-sans">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <span className="inline-block bg-stone-gold/20 text-stone-gold border border-stone-gold/30 text-[10px] font-sans font-bold uppercase tracking-[0.25em] px-3 py-1 rounded-full mb-4">
                 {data.badge}
               </span>
-              <h1 className="font-serif text-5xl md:text-6xl xl:text-7xl font-extralight tracking-tight mb-6 leading-[1.08]">
-                {data.title}<br />
-                <span className="italic font-normal text-stone-gold">{data.titleAccent}</span>
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.1] mb-6">
+                {data.title} <span className="text-stone-gold italic">{data.titleAccent}</span>
               </h1>
-              <p className="text-white/65 text-sm md:text-base font-light max-w-md leading-relaxed mb-8">
+              <p className="text-stone-300 text-sm md:text-base font-light leading-relaxed mb-8">
                 {data.subtitle}
               </p>
 
-              {/* Quick Pills */}
-              <div className="flex flex-wrap gap-5 mb-10 text-xs font-sans">
-                <div className="flex items-center gap-2 text-white/50">
-                  <Sparkles size={12} className="text-stone-gold" />
-                  <span>{data.finishes.slice(0, 3).join(" · ")}{data.finishes.length > 3 ? " +" : ""}</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/50">
-                  <Ruler size={12} className="text-stone-gold" />
-                  <span>{data.thickness.slice(0, 3).join(" · ")}</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/50">
-                  <Layers size={12} className="text-stone-gold" />
-                  <span>{data.applications.slice(0, 2).join(", ")}</span>
-                </div>
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-wrap gap-3">
-                <a href={waHref} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#25D366] text-white text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 rounded-xl hover:bg-[#1ebe57] transition-colors font-sans">
-                  <MessageCircle size={14} /> WhatsApp Price
+              {/* Quick Actions */}
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-sans font-bold uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-emerald-900/30"
+                >
+                  <MessageCircle size={16} /> WhatsApp Enquiry
                 </a>
-                <Link href={`/contact?product=${data.contactParam}`}
-                  className="inline-flex items-center gap-2 bg-stone-gold text-neutral-dark text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 rounded-xl hover:bg-stone-gold/90 transition-colors font-sans">
-                  Request Quote <ArrowRight size={14} />
+                <Link
+                  href={`/contact?product=${encodeURIComponent(data.contactParam)}`}
+                  className="inline-flex items-center gap-2.5 bg-stone-gold hover:bg-stone-gold/90 text-neutral-dark text-xs font-sans font-bold uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-black/20"
+                >
+                  Request Quotation <ArrowRight size={14} />
                 </Link>
-                <Link href="/downloads"
-                  className="inline-flex items-center gap-2 border border-white/25 text-white/70 text-[11px] font-bold tracking-widest uppercase px-5 py-3.5 rounded-xl hover:border-white/50 hover:text-white transition-colors font-sans">
-                  <Download size={13} /> Brochure
-                </Link>
+                <a
+                  href={cataloguePdfPath}
+                  download="Kamal_Industries_Kota_Stone_Catalogue.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white text-xs font-sans font-medium uppercase tracking-widest px-5 py-3.5 rounded-xl transition-all duration-200"
+                >
+                  <Download size={14} /> Catalogue (PDF)
+                </a>
               </div>
             </div>
 
-            {/* Right — Hero image card */}
-            <div className="hidden lg:block relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-              <Image
-                src={data.gallery[0].src}
-                alt={data.gallery[0].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <button
-                onClick={() => openLightbox(0)}
-                className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white text-[10px] font-bold tracking-widest uppercase px-3 py-2 rounded-lg border border-white/20 hover:bg-white/20 transition-colors font-sans"
-              >
-                <ExternalLink size={11} /> View Gallery
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ IMAGE GALLERY ══════════════ */}
-      <section className="py-12 md:py-16 bg-[#f7f7f5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-serif text-2xl font-light text-neutral-dark">
-              Factory <span className="italic text-stone-gold">Gallery</span>
-            </h2>
-            <span className="text-[10px] text-gray-400 font-sans tracking-widest uppercase">
-              {data.gallery.length} photos · Kamal Industries, Ramganjmandi
-            </span>
-          </div>
-
-          {/* Main grid — first is large, rest are smaller */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-            {data.gallery.slice(0, 1).map((img, i) => (
-              <div
-                key={img.src + i}
-                className="col-span-2 row-span-2 relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group"
-                onClick={() => openLightbox(0)}
-              >
-                <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end justify-end p-3">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 backdrop-blur-sm text-white text-[9px] tracking-widest uppercase px-2 py-1 rounded font-sans font-bold">
-                    Open
-                  </span>
-                </div>
-              </div>
-            ))}
-            {data.gallery.slice(1, 5).map((img, i) => (
-              <div
-                key={img.src + i}
-                className="relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group"
-                onClick={() => openLightbox(i + 1)}
-              >
-                <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="25vw" />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors" />
-                {i === 3 && data.gallery.length > 5 && (
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                    <span className="text-white font-serif text-2xl font-light">+{data.gallery.length - 5}</span>
+            {/* Featured Image Viewer */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 shadow-2xl group cursor-pointer" onClick={() => setLightboxIndex(0)}>
+                <Image
+                  src={activeImage}
+                  alt={data.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ZoomIn size={20} />
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ PRODUCT OVERVIEW ══════════════ */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
-            {/* Description */}
-            <div className="lg:col-span-2">
-              <span className="text-[10px] tracking-widest font-bold uppercase text-stone-gold font-sans block mb-3">Product Overview</span>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark mb-4 leading-tight">
-                {data.title} <span className="italic text-stone-gold">{data.titleAccent}</span>
-              </h2>
-              <div className="w-12 h-[1.5px] bg-stone-gold mb-6" />
-              <p className="text-gray-600 text-sm md:text-base font-light leading-relaxed mb-8">
-                {data.description}
-              </p>
-
-              {/* Features */}
-              <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-neutral-dark mb-4">Key Benefits</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {data.features.map((f) => (
-                  <div key={f} className="flex items-start gap-3 bg-[#f7f7f5] rounded-lg px-4 py-3">
-                    <CheckCircle2 size={14} className="text-stone-gold shrink-0 mt-0.5" />
-                    <span className="text-xs text-gray-600 font-light leading-relaxed">{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Sidebar — Sizes / Thickness / Finishes */}
-            <div className="space-y-6">
-              {/* Available Sizes */}
-              <div className="border border-gray-100 rounded-xl p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Ruler size={13} className="text-stone-gold" />
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gray-500">Available Sizes</span>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {data.sizes.map((s) => (
-                    <span key={s} className="text-[10px] font-sans bg-primary/8 text-primary border border-primary/15 px-3 py-1.5 rounded-full font-medium">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Thickness */}
-              <div className="border border-gray-100 rounded-xl p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Layers size={13} className="text-stone-gold" />
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gray-500">Thickness Options</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {data.thickness.map((t) => (
-                    <span key={t} className="text-[10px] font-sans bg-neutral-light text-gray-600 border border-gray-100 px-3 py-1.5 rounded-full">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Finishes */}
-              <div className="border border-gray-100 rounded-xl p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles size={13} className="text-stone-gold" />
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-gray-500">Surface Finishes</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {data.finishes.map((f) => (
-                    <span key={f} className="text-[10px] font-sans bg-charcoal text-white/70 px-3 py-1.5 rounded-full font-medium">
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick CTA */}
-              <div className="bg-primary rounded-xl p-5 text-white">
-                <p className="font-serif text-lg font-light mb-1">Factory-Direct Pricing</p>
-                <p className="text-xs text-white/60 font-light mb-4">Response within 24 hours</p>
-                <Link href={`/contact?product=${data.contactParam}`}
-                  className="block text-center bg-white text-primary text-[11px] font-bold tracking-widest uppercase py-3 rounded-lg hover:bg-stone-gold hover:text-neutral-dark transition-colors font-sans">
-                  Request a Quote
-                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════ SPECIFICATIONS TABLE ══════════════ */}
-      <section className="py-16 md:py-20 bg-[#f7f7f5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Left — Label */}
-            <div className="lg:col-span-2">
-              <span className="text-[10px] tracking-widest font-bold uppercase text-stone-gold font-sans block mb-3">Specifications</span>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark mb-4">
-                Technical<br /><span className="italic text-stone-gold">Data Sheet</span>
-              </h2>
-              <div className="w-12 h-[1.5px] bg-stone-gold mb-6" />
-              <p className="text-gray-500 text-sm font-light leading-relaxed mb-6">
-                All measurements are factory-certified and verified against batch production standards. Custom specifications available on request.
-              </p>
-              <div className="flex flex-col gap-3">
-                <Link href="/downloads"
-                  className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold tracking-widest uppercase px-5 py-3 rounded-lg hover:bg-primary-dark transition-colors font-sans w-fit">
-                  <Download size={13} /> Download Brochure
-                </Link>
-                <Link href="/specifications"
-                  className="inline-flex items-center gap-2 text-primary text-[11px] font-bold tracking-widest uppercase hover:underline font-sans w-fit">
-                  Full Spec Sheet <ArrowRight size={12} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right — Table */}
-            <div className="lg:col-span-3">
-              <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                {data.specs.map((s, i) => (
-                  <div key={s.label} className={`flex justify-between items-center px-5 py-3.5 text-xs border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-[#f7f7f5]"}`}>
-                    <span className="text-gray-400 font-light font-sans">{s.label}</span>
-                    <span className="text-neutral-dark font-semibold text-right max-w-[58%] font-sans">{s.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ APPLICATIONS ══════════════ */}
-      <section className="py-16 md:py-20 bg-charcoal text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <span className="text-[10px] tracking-widest font-bold uppercase text-stone-gold font-sans block mb-3">Where It&apos;s Used</span>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-white">Applications</h2>
-            <div className="w-12 h-[1.5px] bg-stone-gold mx-auto mt-4" />
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {data.applications.map((app) => (
-              <div key={app} className="group bg-white/5 border border-white/8 rounded-xl px-4 py-4 text-center hover:bg-white/10 hover:border-stone-gold/30 transition-all duration-300 cursor-default">
-                <span className="text-xs text-white/65 font-sans font-light group-hover:text-white/90 transition-colors">{app}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════ RELATED PRODUCTS ══════════════ */}
-      {data.related.length > 0 && (
-        <section className="py-16 md:py-20 bg-white">
+      {/* ══════════════ GALLERY GRID ══════════════ */}
+      {galleryItems.length > 0 && (
+        <section className="py-12 bg-neutral-dark/95 text-white border-b border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <span className="text-[10px] tracking-widest font-bold uppercase text-stone-gold font-sans block mb-2">You May Also Like</span>
-                <h2 className="font-serif text-2xl md:text-3xl font-light text-neutral-dark">
-                  Related <span className="italic text-stone-gold">Products</span>
-                </h2>
-              </div>
-              <Link href="/products" className="hidden sm:inline-flex items-center gap-1.5 text-primary text-[10px] font-bold uppercase tracking-widest hover:underline font-sans">
-                All Products <ArrowRight size={12} />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.related.map((p) => (
-                <Link key={p.href} href={p.href} className="group block border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={p.image} alt={p.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="33vw" />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-serif text-lg font-medium text-neutral-dark mb-1 group-hover:text-primary transition-colors">{p.name}</h3>
-                    <p className="text-gray-400 text-xs font-light italic mb-3">{p.tagline}</p>
-                    <span className="inline-flex items-center gap-1 text-primary text-[10px] font-bold uppercase tracking-widest font-sans group-hover:gap-2 transition-all">
-                      View Details <ArrowRight size={11} />
-                    </span>
-                  </div>
-                </Link>
+            <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-stone-gold mb-3 block font-sans">
+              Product Photo Gallery ({galleryItems.length} Photos)
+            </span>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+              {galleryItems.map((item, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    setActiveImage(item.src);
+                    setLightboxIndex(idx);
+                  }}
+                  className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer border-2 transition-all ${
+                    activeImage === item.src ? "border-stone-gold scale-95" : "border-transparent opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="150px" />
+                </div>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* ══════════════ BOTTOM CTA ══════════════ */}
-      <section className="py-16 bg-[#f7f7f5] border-t border-gray-100">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark mb-3">
-            Ready to Order? <span className="italic text-stone-gold">Get in Touch.</span>
-          </h2>
-          <p className="text-gray-500 text-sm font-light leading-relaxed mb-8 max-w-xl mx-auto">
-            Share your quantity, size, finish, and delivery location. Our team responds with
-            factory-direct pricing within 24 hours. Bulk orders and export supply available.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href={waHref} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] text-white text-[11px] font-bold tracking-widest uppercase px-7 py-4 rounded-xl hover:bg-[#1ebe57] transition-colors font-sans shadow-lg shadow-green-500/20">
-              <MessageCircle size={15} /> WhatsApp Us
-            </a>
-            <Link href={`/contact?product=${data.contactParam}`}
-              className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold tracking-widest uppercase px-7 py-4 rounded-xl hover:bg-primary-dark transition-colors font-sans shadow-lg shadow-primary/20">
-              Request Quote <ArrowRight size={14} />
-            </Link>
-            <Link href="/downloads"
-              className="inline-flex items-center gap-2 border border-gray-300 text-gray-600 text-[11px] font-bold tracking-widest uppercase px-7 py-4 rounded-xl hover:border-primary hover:text-primary transition-colors font-sans">
-              <Download size={14} /> Download Brochure
-            </Link>
-            <a href="tel:+919214830464"
-              className="inline-flex items-center gap-2 border border-gray-200 text-gray-500 text-[11px] font-bold tracking-widest uppercase px-6 py-4 rounded-xl hover:border-gray-300 transition-colors font-sans">
-              <Phone size={14} /> Call Factory
-            </a>
+      {/* ══════════════ 2. PRODUCT OVERVIEW & SPECS ══════════════ */}
+      <section className="py-16 md:py-24 bg-neutral-light/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Left Col (2 cols): Overview & Features */}
+            <div className="lg:col-span-2 space-y-12">
+              {/* Product Overview */}
+              <div>
+                <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-2 block font-sans">
+                  Comprehensive Overview
+                </span>
+                <h2 className="font-serif text-3xl font-light text-neutral-dark mb-4">
+                  Product Description & Performance
+                </h2>
+                <div className="w-12 h-[2px] bg-stone-gold mb-6" />
+                <p className="text-gray-600 font-light leading-relaxed text-sm md:text-base whitespace-pre-line">
+                  {data.description}
+                </p>
+              </div>
+
+              {/* Key Features List */}
+              <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-2 block font-sans">
+                  Why Choose Our Material
+                </span>
+                <h3 className="font-serif text-2xl font-light text-neutral-dark mb-6">
+                  Key Advantages & Performance Attributes
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {data.features.map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="text-stone-gold shrink-0 mt-0.5" />
+                      <span className="text-xs text-gray-700 font-light leading-relaxed font-sans">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Finishes & Sizes Summary */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Available Finishes */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles size={16} className="text-stone-gold" />
+                    <h4 className="font-serif text-lg font-medium text-neutral-dark">Available Finishes</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {data.finishes.map((f) => (
+                      <span key={f} className="text-xs bg-neutral-light text-neutral-dark px-3 py-1 rounded-full border border-gray-100 font-sans">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Available Sizes */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Ruler size={16} className="text-stone-gold" />
+                    <h4 className="font-serif text-lg font-medium text-neutral-dark">Standard Sizes</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {data.sizes.map((s) => (
+                      <span key={s} className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20 font-sans font-medium">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Col (1 col): Technical Specs Card */}
+            <div>
+              <div className="bg-neutral-dark text-white p-8 rounded-2xl sticky top-28 shadow-xl border border-white/10">
+                <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-2 block font-sans">
+                  Technical Data Sheet
+                </span>
+                <h3 className="font-serif text-2xl font-light text-white mb-6">
+                  Material Specifications
+                </h3>
+                <div className="w-10 h-[2px] bg-stone-gold mb-6" />
+
+                <div className="space-y-4 text-xs font-sans">
+                  {data.specs.map((sp, idx) => (
+                    <div key={idx} className="flex justify-between py-2 border-b border-white/10">
+                      <span className="text-stone-400 font-light">{sp.label}</span>
+                      <span className="text-stone-200 font-medium text-right">{sp.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-widest py-3.5 px-4 rounded-xl transition-colors font-sans"
+                  >
+                    <MessageCircle size={14} /> Quick WhatsApp Order
+                  </a>
+                  <a
+                    href="tel:+919214830464"
+                    className="w-full flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-stone-300 text-xs font-medium uppercase tracking-widest py-3.5 px-4 rounded-xl transition-colors font-sans"
+                  >
+                    <Phone size={14} /> Call: +91 92148 30464
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* ══════════════ 3. APPLICATIONS SECTION ══════════════ */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-2 block font-sans">
+              Recommended Usage
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark mb-4">
+              Project Applications
+            </h2>
+            <div className="w-12 h-[2px] bg-stone-gold mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {data.applications.map((app, idx) => (
+              <div key={idx} className="bg-neutral-light/50 p-4 rounded-xl text-center border border-gray-100 hover:border-stone-gold/40 transition-colors">
+                <Layers size={18} className="text-stone-gold mx-auto mb-2" />
+                <span className="text-xs font-sans text-neutral-dark font-medium block">{app}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ 4. RELATED PRODUCTS ══════════════ */}
+      {data.related && data.related.length > 0 && (
+        <section className="py-16 bg-neutral-light/30 border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-stone-gold mb-2 block font-sans text-center">
+              Complete Stone Range
+            </span>
+            <h2 className="font-serif text-3xl font-light text-neutral-dark mb-10 text-center">
+              Explore Related Products
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {data.related.map((rel, idx) => (
+                <div key={idx} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+                    <Image
+                      src={rel.image || "/Kota Blue Stone.jpeg"}
+                      alt={rel.name}
+                      fill
+                      className="object-cover"
+                      sizes="400px"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif text-xl font-medium text-neutral-dark mb-2">{rel.name}</h3>
+                    <p className="text-xs text-gray-500 font-light leading-relaxed mb-6">{rel.tagline}</p>
+                    <Link
+                      href={rel.href}
+                      className="inline-flex items-center gap-2 text-stone-gold hover:text-stone-gold/80 text-xs font-bold uppercase tracking-widest font-sans"
+                    >
+                      View Product Details <ExternalLink size={12} />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════ LIGHTBOX MODAL ══════════════ */}
       {lightboxIndex !== null && (
-        <Lightbox
-          images={data.gallery}
-          index={lightboxIndex}
-          onClose={closeLightbox}
-          onPrev={prevImage}
-          onNext={nextImage}
-        />
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
+          <button
+            onClick={() => setLightboxIndex(null)}
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 p-3 rounded-full z-10"
+          >
+            <X size={24} />
+          </button>
+          <button
+            onClick={() => setLightboxIndex((lightboxIndex - 1 + galleryItems.length) % galleryItems.length)}
+            className="absolute left-6 text-white/70 hover:text-white bg-white/10 p-3 rounded-full z-10"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={() => setLightboxIndex((lightboxIndex + 1) % galleryItems.length)}
+            className="absolute right-6 text-white/70 hover:text-white bg-white/10 p-3 rounded-full z-10"
+          >
+            <ChevronRight size={24} />
+          </button>
+          <div className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center">
+            <div className="relative w-full h-[75vh]">
+              <Image
+                src={galleryItems[lightboxIndex].src}
+                alt={galleryItems[lightboxIndex].alt}
+                fill
+                className="object-contain"
+                sizes="100vw"
+              />
+            </div>
+            <p className="text-white/80 text-xs font-sans mt-4 text-center">
+              {galleryItems[lightboxIndex].alt} ({lightboxIndex + 1} of {galleryItems.length})
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );

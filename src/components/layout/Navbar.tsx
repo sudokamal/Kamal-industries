@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Globe, Moon, Sun } from "lucide-react";
+import { Menu, X, ChevronDown, Moon, Sun } from "lucide-react";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 interface NavItem {
   label: string;
@@ -33,7 +34,6 @@ const navItems: NavItem[] = [
     label: "Resources",
     href: "/downloads",
     dropdown: [
-      { id: "nav-specifications",  label: "Technical Specifications", href: "/specifications" },
       { id: "nav-downloads",       label: "Download Brochures",       href: "/downloads" },
       { id: "nav-services",        label: "Manufacturing Services",   href: "/services" },
     ],
@@ -201,8 +201,9 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Call to Action Button */}
+        {/* Call to Action & Controls */}
         <div className="hidden lg:flex items-center gap-4">
+          <LanguageSwitcher />
           <button
             onClick={toggleDark}
             className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-stone-gold hover:text-stone-gold transition-all cursor-pointer"
@@ -216,10 +217,6 @@ export default function Navbar() {
           >
             Request a Quote
           </Link>
-          <div className="flex items-center gap-1.5 text-gray-400 pl-4 border-l border-gray-200">
-            <Globe size={15} className="text-stone-gold" />
-            <span className="text-[10px] tracking-widest uppercase font-bold text-gray-500">INTL</span>
-          </div>
         </div>
 
         {/* Mobile Hamburger Menu Button */}
@@ -303,18 +300,18 @@ export default function Navbar() {
               })}
 
               <div className="pt-4 flex flex-col gap-4">
+                <div className="flex items-center justify-between py-2 border-t border-b border-gray-100">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                    Website Language
+                  </span>
+                  <LanguageSwitcher />
+                </div>
                 <Link
                   href="/contact"
                   className="w-full text-center py-3 bg-primary text-white text-sm font-semibold tracking-widest uppercase hover:bg-primary-dark transition-all rounded-sm"
                 >
                   Request a Quote
                 </Link>
-                <div className="flex items-center justify-center gap-2 text-gray-500 py-2 border-t border-gray-100">
-                  <Globe size={16} className="text-stone-gold" />
-                  <span className="text-xs tracking-widest uppercase font-bold">
-                    International Quality Certified
-                  </span>
-                </div>
               </div>
             </div>
           </motion.div>

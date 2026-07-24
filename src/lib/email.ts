@@ -28,7 +28,8 @@ function isResendActive(): boolean {
 
 function createTransporter(): Transporter {
   const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const rawPass = process.env.GMAIL_APP_PASSWORD || "";
+  const pass = rawPass.replace(/\s+/g, "");
 
   if (!user) {
     console.error("[SMTP Library Error] Missing GMAIL_USER in environment.");
@@ -43,8 +44,11 @@ function createTransporter(): Transporter {
   return nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
-    secure: false, // true for port 465, false for port 587 (STARTTLS)
+    secure: false, // TLS port 587
     auth: { user, pass },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 }
 

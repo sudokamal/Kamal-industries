@@ -12,13 +12,13 @@ import HeroSlider from "@/components/home/HeroSlider";
 import CompanyProfile from "@/components/home/CompanyProfile";
 import FactoryOverview from "@/components/home/FactoryOverview";
 import StatsCounter from "@/components/home/StatsCounter";
-import TechSpecsTable from "@/components/home/TechSpecsTable";
 import ApplicationCards from "@/components/home/ApplicationCards";
 import TrustSection from "@/components/home/TrustSection";
 import TestimonialSlider from "@/components/home/TestimonialSlider";
 import FAQAccordion from "@/components/home/FAQAccordion";
 
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Icon3D from "@/components/ui/Icon3D";
 
 export const metadata: Metadata = {
   title: "Premium Kota Stone Manufacturer & Exporter | Kamal Industries",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       "Direct manufacturer & supplier of Kota Blue Stone, Kota Brown Stone, Mandana Stone, floor tiles, slabs, wall cladding, and custom cut stone. Amarpura, Ramganjmandi, Kota, Rajasthan since 1985. Direct factory rates.",
     images: [
       {
-        url: "/hero-1.jpeg",
+        url: "/HomePage.jpeg",
         width: 1200,
         height: 630,
         alt: "Kamal Industries Kota Stone processing facility and inventory yard",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "Premium Kota Stone Manufacturer & Exporter | Kamal Industries",
     description:
       "Direct manufacturer & supplier of Kota Blue Stone, Kota Brown Stone, Mandana Stone, floor tiles, slabs, and wall cladding from Ramganjmandi, Kota, Rajasthan.",
-    images: ["/hero-1.jpeg"],
+    images: ["/HomePage.jpeg"],
   },
 };
 
@@ -59,7 +59,7 @@ const products = [
     id: "kota-blue",
     name: "Kota Blue Stone",
     tagline: "Premium blue-grey limestone",
-    image: "/kota-blue-1.jpeg",
+    image: "/Kota Blue Stone.jpeg",
     alt: "Kota Blue Stone slabs stacked at Kamal Industries factory yard",
     desc: "Dense, naturally slip-resistant limestone in signature blue-grey tones. The benchmark stone for Indian commercial and residential flooring.",
     thickness: "18mm – 50mm",
@@ -73,7 +73,7 @@ const products = [
     id: "kota-brown",
     name: "Kota Brown Stone",
     tagline: "Warm earthy-tone limestone",
-    image: "/kota-stone-1.jpeg",
+    image: "/Kota Brown Stone.jpeg",
     alt: "Kota Stone flooring slabs overhead view",
     desc: "Rich warm-brown Kota limestone — the preferred choice for villa exteriors, courtyard paving, farmhouse flooring, and rustic interior designs.",
     thickness: "18mm – 40mm",
@@ -87,7 +87,7 @@ const products = [
     id: "mandana",
     name: "Mandana Red Stone",
     tagline: "Heritage Rajasthani quartzite",
-    image: "/stock-yard-1.jpeg",
+    image: "/Mandana Red Stone.jpeg",
     alt: "Stone stock yard at Kamal Industries",
     desc: "Acid-resistant red quartzite from Rajasthan's geological heritage. Non-slip, weather-proof, and ideal for temple flooring, garden paths, and heritage restoration.",
     thickness: "20mm – 35mm",
@@ -101,7 +101,7 @@ const products = [
     id: "slabs",
     name: "Large Format Slabs",
     tagline: "Zero lamination premium slabs",
-    image: "/kota-slab-2.jpeg",
+    image: "/Large Format Slabs.jpeg",
     alt: "Large-format Kota Stone slabs at factory",
     desc: "Large-format Kota Stone slabs with uniform colour and zero laminations — ideal for hotel lobbies, airport terminals, and premium landscape paving.",
     thickness: "20mm – 50mm",
@@ -115,7 +115,7 @@ const products = [
     id: "steps",
     name: "Steps & Stair Treads",
     tagline: "Naturally slip-resistant",
-    image: "/steps-1.jpeg",
+    image: "/Stairs.jpeg",
     alt: "Kota Stone step treads stacked in factory yard",
     desc: "Calibrated stair treads and risers — naturally slip-resistant, load-bearing, and available in all standard and custom dimensions for residential and commercial staircases.",
     thickness: "30mm – 60mm",
@@ -129,7 +129,7 @@ const products = [
     id: "cladding",
     name: "Wall Cladding",
     tagline: "Split-face & sawn facade panels",
-    image: "/kota-slab-1.jpeg",
+    image: "/Wall Cladding.jpeg",
     alt: "Kota Stone wall cladding panels",
     desc: "Split-face and sawn wall cladding panels for building facades, feature walls, and interior accent surfaces. Adds raw industrial character to any architectural design.",
     thickness: "15mm – 30mm",
@@ -143,7 +143,7 @@ const products = [
     id: "garden",
     name: "Garden & Outdoor Stone",
     tagline: "Landscaping & paving",
-    image: "/kota-stone-2.jpeg",
+    image: "/Garden.jpeg",
     alt: "Large Kota Stone slabs for outdoor paving",
     desc: "Robust Kota Stone cut for outdoor landscaping, garden pathways, pool surrounds, driveways, and farm terrace paving. Weather-resistant for all Indian climates.",
     thickness: "25mm – 50mm",
@@ -183,7 +183,7 @@ const whyCards = [
 // ─── PROCESS STEPS ────────────────────────────────────────────────────────────
 const processSteps = [
   {
-    n: "01", title: "Raw Stone",
+    n: "01", title: "Raw Stone Extraction",
     desc: "Dense limestone blocks are extracted from the Ramganjmandi geological belt — the world's primary Kota Stone deposit.",
     image: "/step-1-quarry.png",
     alt: "Kamal Industries stone yard with raw block inventory",
@@ -192,7 +192,7 @@ const processSteps = [
     n: "02", title: "Precision Cutting",
     desc: "Diamond-blade gang saws and CNC equipment slice raw blocks to exact calibrated dimensions with ±1mm thickness tolerance.",
     image: "/cutting-machine-1.jpeg",
-    alt: "Diamond saw cutting Kota Stone at Kamal Industries",
+    alt: "Diamond-blade gang saw cutting Kota Stone at Kamal Industries factory",
   },
   {
     n: "03", title: "Machine Finishing",
@@ -204,25 +204,25 @@ const processSteps = [
     n: "04", title: "Quality Inspection",
     desc: "Every piece is hand-inspected for colour consistency, structural integrity, and dimensional accuracy before approval.",
     image: "/Quality.jpeg",
-    alt: "Kota Blue Stone quality inspection at factory",
+    alt: "Kota Blue Stone quality inspection and grading at factory yard",
   },
   {
-    n: "05", title: "Packing",
+    n: "05", title: "Palletising & Packing",
     desc: "Approved stone is sorted by grade and packed in wooden pallets for domestic delivery or seaworthy crates for export.",
     image: "/Packing.jpeg",
-    alt: "Stone inventory ready for packing at Kamal Industries",
+    alt: "Kota Stone slabs packed in wooden pallets and export crates",
   },
   {
-    n: "06", title: "Loading",
+    n: "06", title: "Precision Loading",
     desc: "Our experienced team loads stone with care — zero breakage policy enforced on every dispatch from the factory yard.",
     image: "/workers-loading-1.jpeg",
-    alt: "Workers loading Kota Stone onto transport vehicle",
+    alt: "Workers loading Kota Stone slabs onto transport vehicle at Kamal Industries",
   },
   {
-    n: "07", title: "Delivery",
+    n: "07", title: "Dispatch & Delivery",
     desc: "Pan-India delivery by transport vehicle, or international export via Mundra and Kandla ports — coordinated end-to-end.",
     image: "/Delivery.jpeg",
-    alt: "Stone stock yard with dispatch-ready inventory at Kamal Industries",
+    alt: "Stone dispatch yard with loaded vehicles ready for delivery",
   },
 ];
 
@@ -239,14 +239,14 @@ const buyerTypes = [
     type: "Builders & Contractors",
     icon: "🏗️",
     desc: "Bulk supply with factory-direct pricing. Large project volumes fulfilled reliably with consistent quality batches.",
-    image: "/factory-yard-1.jpeg",
+    image: "/HomePage1.jpeg",
     alt: "Kamal Industries factory for builders and contractors",
   },
   {
     type: "Wholesalers & Dealers",
     icon: "📦",
     desc: "Wholesale pricing for stone dealers. Regular supply agreements available with priority dispatch and competitive rates.",
-    image: "/stock-yard-1.jpeg",
+    image: "/Gallery1.jpeg",
     alt: "Stone inventory for wholesalers at Kamal Industries",
   },
   {
@@ -409,12 +409,6 @@ export default function Home() {
 
 
       {/* ════════════════════════════════════════════
-          TECHNICAL SPECIFICATIONS — Professional table
-          ════════════════════════════════════════════ */}
-      <TechSpecsTable />
-
-
-      {/* ════════════════════════════════════════════
           APPLICATIONS — 12 image cards
           ════════════════════════════════════════════ */}
       <ApplicationCards />
@@ -446,13 +440,15 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {whyCards.map((card) => (
+            {whyCards.map((card, idx) => (
               <div
                 key={card.title}
                 className="bg-white rounded-2xl p-7 border border-gray-100 hover:border-stone-gold/30 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-stone-gold/10 transition-colors">
-                  {card.icon}
+                <div className="mb-5">
+                  <Icon3D variant={idx % 2 === 0 ? "gold" : "amber"} size="md">
+                    {card.icon}
+                  </Icon3D>
                 </div>
                 <h3 className="font-serif text-lg font-medium text-neutral-dark mb-2">{card.title}</h3>
                 <p className="text-gray-400 text-xs font-light leading-relaxed">{card.desc}</p>
@@ -568,13 +564,13 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { src: "/kota-blue-1.jpeg", alt: "Kota Blue Stone quality batch" },
+                { src: "/Kota Blue Stone.jpeg", alt: "Kota Blue Stone quality batch" },
                 { src: "/cutting-machine-1.jpeg", alt: "Precision cutting machine" },
-                { src: "/kota-stone-3.jpeg", alt: "Calibrated stone production" },
+                { src: "/Quality.jpeg", alt: "Calibrated stone production" },
                 { src: "/workers-loading-2.jpeg", alt: "Stone handling quality" },
               ].map((img) => (
                 <div key={img.src} className="relative aspect-square rounded-2xl overflow-hidden img-zoom-container">
-                  <Image src={img.src} alt={img.alt} fill className="object-cover opacity-70 hover:opacity-90 transition-opacity" sizes="25vw" />
+                  <Image src={img.src} alt={img.alt} fill className="object-cover opacity-80 hover:opacity-100 transition-opacity" sizes="25vw" />
                 </div>
               ))}
             </div>
@@ -647,9 +643,9 @@ export default function Home() {
             <Link href="/contact" className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 rounded-xl hover:bg-primary-dark transition-colors font-sans">
               Send Project Enquiry <ArrowRight size={14} />
             </Link>
-            <Link href="/downloads" className="inline-flex items-center gap-2 border border-primary/30 text-primary text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 rounded-xl hover:bg-primary/5 transition-colors font-sans">
-              <Download size={13} /> Download Catalogue
-            </Link>
+            <a href="/Kamal_Industries_Kota_Stone_Catalogue.pdf" download="Kamal_Industries_Kota_Stone_Catalogue.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-primary/30 text-primary text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 rounded-xl hover:bg-primary/5 transition-colors font-sans">
+              <Download size={13} /> Download Catalogue (PDF)
+            </a>
           </div>
         </div>
       </section>
@@ -673,7 +669,7 @@ export default function Home() {
           {/* Bento grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 h-auto md:h-[600px]">
             <div className="md:col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer img-zoom-container">
-              <Image src="/hero-1.jpeg" alt="Kamal Industries stone yard — massive Kota Stone slab stock" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
+              <Image src="/HomePage.jpeg" alt="Kamal Industries stone yard — massive Kota Stone slab stock" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-5 left-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <span className="text-[9px] font-bold uppercase tracking-widest text-stone-gold font-sans block">Factory</span>
@@ -683,9 +679,9 @@ export default function Home() {
 
             {[
               { src: "/cutting-machine-2.jpeg", label: "Cutting Machine", cat: "Machinery" },
-              { src: "/kota-blue-1.jpeg", label: "Kota Blue Stone", cat: "Products" },
+              { src: "/Kota Blue Stone.jpeg", label: "Kota Blue Stone", cat: "Products" },
               { src: "/workers-loading-1.jpeg", label: "Loading & Dispatch", cat: "Workers" },
-              { src: "/steps-2.jpeg", label: "Step Stone Stock", cat: "Products" },
+              { src: "/Stairs.jpeg", label: "Step Stone Stock", cat: "Products" },
             ].map((img) => (
               <div key={img.src} className="relative rounded-2xl overflow-hidden group cursor-pointer img-zoom-container">
                 <Image src={img.src} alt={img.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="25vw" />
@@ -703,7 +699,7 @@ export default function Home() {
               href="/gallery"
               className="inline-flex items-center gap-2 border border-white/20 text-white text-[11px] font-bold tracking-widest uppercase px-8 py-4 rounded-xl hover:border-stone-gold hover:text-stone-gold transition-all duration-200 font-sans"
             >
-              View Full Gallery — 60+ Photos <ArrowRight size={14} />
+              View Full Gallery — 25+ Photos <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -757,13 +753,13 @@ export default function Home() {
           {/* Left: factory photo */}
           <div className="relative min-h-[320px] lg:min-h-auto">
             <Image
-              src="/02.jpeg"
+              src="/Office.jpeg"
               alt="Kamal Industries office — Amarpura, Ramganjmandi, Kota, Rajasthan"
               fill
               className="object-cover"
               sizes="50vw"
             />
-            <div className="absolute inset-0 bg-primary/70" />
+            <div className="absolute inset-0 bg-primary/75" />
             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-14">
               <div className="space-y-4">
                 <h3 className="font-serif text-3xl font-light text-white">
@@ -871,11 +867,10 @@ export default function Home() {
             </h2>
             <div className="w-14 h-[2px] bg-stone-gold mx-auto mt-4" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               { title: "Company Profile", desc: "Our story, factory capabilities, and product range.", href: "/downloads", badge: "PDF" },
               { title: "Product Catalogue", desc: "Full product range with specifications and finishes.", href: "/downloads", badge: "PDF", featured: true },
-              { title: "Technical Brochure", desc: "Engineering data for architects and project managers.", href: "/specifications", badge: "PDF" },
               { title: "Price List", desc: "Factory-direct pricing — request via WhatsApp.", href: "/contact", badge: "On Request" },
             ].map((doc) => (
               <Link

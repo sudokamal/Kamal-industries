@@ -1,107 +1,63 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { Download, FileText, Phone, MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Download Brochures & Catalogues | Kamal Industries",
-  description:
-    "Download the Kamal Industries company profile, Kota Stone product catalogue, and technical specifications brochure. Direct manufacturer of Kota Blue Stone, Kota Brown Stone, and Mandana Stone.",
-  alternates: {
-    canonical: "https://kamalindustries.in/downloads",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://kamalindustries.in/downloads",
-    siteName: "Kamal Industries & Enterprises",
-    title: "Download Brochures & Catalogues | Kamal Industries",
-    description:
-      "Download the Kamal Industries company profile, Kota Stone product catalogue, and technical specifications brochure. Direct manufacturer of Kota Blue Stone, Kota Brown Stone, and Mandana Stone.",
-    images: [
-      {
-        url: "/factory-yard-1.jpeg",
-        width: 1200,
-        height: 630,
-        alt: "Kamal Industries factory yard in Ramganjmandi",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Download Brochures & Catalogues | Kamal Industries",
-    description:
-      "Download the Kamal Industries company profile, Kota Stone product catalogue, and technical specifications brochure.",
-    images: ["/factory-yard-1.jpeg"],
-  },
-};
+interface DownloadItem {
+  title: string;
+  desc: string;
+  format: string;
+  size: string;
+  tag: string;
+  href: string;
+  downloadName?: string;
+  featured?: boolean;
+}
 
-const downloads = [
+const downloads: DownloadItem[] = [
   {
-    title: "Company Profile",
-    desc: "Full company profile including our story, manufacturing capabilities, product range, factory overview, and export services. Ideal for architects and project consultants.",
-    pages: "12 pages",
-    size: "2.4 MB",
+    title: "Official Product & Company Catalogue",
+    desc: "Complete product range, stone specifications, available sizes, finishes, and factory capabilities.",
     format: "PDF",
-    icon: "/ki-signage.jpeg",
-    alt: "Kamal Industries company profile cover",
-    color: "from-primary/20 to-primary/5",
-    accent: "text-primary",
-    tag: "Company",
-    href: "#",
+    size: "4.2 MB",
+    tag: "Catalogue",
+    href: "/Kamal_Industries_Kota_Stone_Catalogue.pdf",
+    downloadName: "Kamal_Industries_Kota_Stone_Catalogue.pdf",
+    featured: true,
   },
   {
-    title: "Product Catalogue",
-    desc: "Full product catalogue with high-resolution factory photos of Kota Blue Stone, Kota Brown Stone, Mandana Stone, wall cladding, steps, and custom stone with specifications.",
-    pages: "24 pages",
-    size: "5.8 MB",
+    title: "Company Profile & Overview",
+    desc: "35+ years manufacturing heritage, Ramganjmandi campus infrastructure, and export credentials.",
     format: "PDF",
-    icon: "/kota-blue-1.jpeg",
-    alt: "Kota Stone product catalogue cover",
-    color: "from-stone-gold/20 to-stone-gold/5",
-    accent: "text-stone-gold-dark",
-    tag: "Products",
-    href: "#",
+    size: "2.1 MB",
+    tag: "Company Profile",
+    href: "/contact",
   },
   {
-    title: "Technical Specifications",
-    desc: "Engineering data sheet with density, water absorption, compressive strength, flexural strength, slip resistance, and dimensional tolerances for all stone types.",
-    pages: "8 pages",
-    size: "1.2 MB",
+    title: "Technical Specifications & BIS Data",
+    desc: "Compressive strength, water absorption, flexural strength, and chemical resistance test reports.",
     format: "PDF",
-    icon: "/kota-slab-2.jpeg",
-    alt: "Kota Stone technical specifications brochure cover",
-    color: "from-gray-100 to-white",
-    accent: "text-gray-700",
-    tag: "Technical",
-    href: "#",
+    size: "1.8 MB",
+    tag: "Technical Data",
+    href: "/downloads",
   },
   {
-    title: "Export Packing Guide",
-    desc: "Guide for international buyers — our seaworthy wooden crate packing specifications, fumigation certificates, port coordination (Mundra/Kandla), and shipping documentation.",
-    pages: "6 pages",
-    size: "0.9 MB",
+    title: "Export & Packing Guide",
+    desc: "Container loading capacities, wooden crate dimensions, fumigation certificates, and port logistics.",
     format: "PDF",
-    icon: "/workers-loading-1.jpeg",
-    alt: "Loading and export guide cover",
-    color: "from-green-50 to-white",
-    accent: "text-green-700",
-    tag: "Export",
-    href: "#",
+    size: "1.5 MB",
+    tag: "Export Guide",
+    href: "/contact",
   },
 ];
 
 export default function DownloadsPage() {
   return (
     <div className="flex flex-col min-h-screen">
-
       {/* ── HEADER ── */}
       <section className="relative bg-charcoal text-white py-28 md:py-36 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src="/factory-yard-1.jpeg" alt="Kamal Industries factory overview" fill priority className="object-cover opacity-20" sizes="100vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 to-charcoal/70" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-neutral-dark to-charcoal" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-[10px] text-white/40 uppercase tracking-widest mb-8 font-sans">
             <Link href="/" className="hover:text-stone-gold transition-colors">Home</Link>
@@ -137,103 +93,80 @@ export default function DownloadsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {downloads.map((doc) => (
-              <div key={doc.title} className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-gray-200 hover:shadow-xl transition-all duration-300 group">
-                <div className="flex items-stretch">
-                  {/* Thumbnail */}
-                  <div className="relative w-32 md:w-40 shrink-0">
-                    <Image src={doc.icon} alt={doc.alt} fill className="object-cover" sizes="160px" />
-                    <div className={`absolute inset-0 bg-gradient-to-r ${doc.color} mix-blend-multiply`} />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <FileText size={28} className={`${doc.accent} drop-shadow-sm`} />
-                      <span className={`text-[8px] font-bold uppercase tracking-widest mt-1.5 ${doc.accent} font-sans`}>{doc.tag}</span>
+              <div
+                key={doc.title}
+                className="bg-white rounded-2xl border border-gray-100 p-8 hover:border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <FileText size={20} className="text-stone-gold" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-stone-gold font-sans">
+                        {doc.tag}
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-[9px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full font-sans">
+                        {doc.format}
+                      </span>
+                      <span className="text-[9px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full font-sans">
+                        {doc.size}
+                      </span>
                     </div>
                   </div>
+                  <h3 className="font-serif text-2xl font-medium text-neutral-dark mb-2">{doc.title}</h3>
+                  <p className="text-gray-500 text-xs font-light leading-relaxed mb-6">{doc.desc}</p>
+                </div>
 
-                  {/* Content */}
-                  <div className="flex-1 p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-serif text-xl font-medium text-neutral-dark">{doc.title}</h3>
-                      <div className="flex gap-1.5 shrink-0 ml-2">
-                        <span className="text-[8px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{doc.format}</span>
-                        <span className="text-[8px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{doc.size}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-400 text-xs font-light leading-relaxed mb-4">{doc.desc}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-gray-300 font-sans">{doc.pages}</span>
-                      <a
-                        href={doc.href}
-                        className="inline-flex items-center gap-2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors font-sans group-hover:shadow-md"
-                        aria-label={`Download ${doc.title}`}
-                      >
-                        <Download size={12} /> Download PDF
-                      </a>
-                    </div>
-                  </div>
+                <div>
+                  {doc.downloadName ? (
+                    <a
+                      href={doc.href}
+                      download={doc.downloadName}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-stone-gold text-neutral-dark text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-xl hover:bg-stone-gold/90 transition-colors font-sans w-full justify-center"
+                    >
+                      <Download size={14} /> Download Document
+                    </a>
+                  ) : (
+                    <Link
+                      href={doc.href}
+                      className="inline-flex items-center gap-2 bg-primary text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-xl hover:bg-primary-dark transition-colors font-sans w-full justify-center"
+                    >
+                      Request Copy <ArrowRight size={14} />
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Request physical sample */}
-          <div className="mt-10 bg-primary rounded-2xl p-8 md:p-10 text-white">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="font-serif text-3xl font-light text-white mb-3">
-                  Request Physical Stone Samples
-                </h3>
-                <div className="w-10 h-[1.5px] bg-stone-gold mb-4" />
-                <p className="text-white/70 text-sm font-light leading-relaxed">
-                  We ship physical stone samples (100×100mm pieces) to architects, builders,
-                  and project consultants across India. Contact us with your delivery address.
-                </p>
-                <div className="mt-4 space-y-2">
-                  {[
-                    "Kota Blue Stone — honed & natural",
-                    "Kota Brown Stone — honed & natural",
-                    "Mandana Stone — natural split",
-                    "Wall Cladding — split face",
-                  ].map((s) => (
-                    <div key={s} className="flex items-center gap-2">
-                      <CheckCircle2 size={13} className="text-stone-gold shrink-0" />
-                      <span className="text-white/80 text-xs font-light">{s}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a href="https://wa.me/919214830464?text=Hello%2C%20I%20would%20like%20to%20request%20physical%20stone%20samples%20from%20Kamal%20Industries."
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 bg-[#25D366] text-white text-[11px] font-bold tracking-widest uppercase px-6 py-4 rounded-xl hover:bg-[#1ebe57] transition-colors font-sans">
-                  <MessageCircle size={16} /> WhatsApp for Samples
-                </a>
-                <a href="tel:+919214830464"
-                  className="flex items-center justify-center gap-3 bg-white/10 border border-white/20 text-white text-[11px] font-bold tracking-widest uppercase px-6 py-4 rounded-xl hover:bg-white/15 transition-colors font-sans">
-                  <Phone size={16} /> Call: +91 92148 30464
-                </a>
-                <Link href="/contact"
-                  className="flex items-center justify-center gap-3 border border-stone-gold/40 text-stone-gold text-[11px] font-bold tracking-widest uppercase px-6 py-4 rounded-xl hover:border-stone-gold hover:bg-stone-gold/10 transition-colors font-sans">
-                  Fill Enquiry Form <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ── NEED CUSTOM DOC ── */}
-      <section className="py-16 bg-white border-t border-gray-50 text-center">
-        <div className="max-w-2xl mx-auto px-4">
-          <h2 className="font-serif text-3xl font-light text-neutral-dark mb-4">
-            Need a Custom Quote Document?
-          </h2>
-          <p className="text-gray-400 text-sm font-light leading-relaxed mb-6">
-            We can prepare a custom project-specific quotation with our company letterhead, product specs,
-            pricing, and delivery terms — suitable for tender submissions and project approvals.
+      {/* ── CTA SECTION ── */}
+      <section className="py-20 bg-charcoal text-white border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="font-serif text-3xl font-light mb-4">Need Custom Specifications?</h2>
+          <p className="text-white/60 text-sm font-light leading-relaxed mb-8 max-w-xl mx-auto">
+            Contact our engineering and sales desk directly for architectural drawing reviews and bespoke quarry estimates.
           </p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-primary text-white text-[11px] font-bold tracking-widest uppercase px-8 py-4 rounded-xl hover:bg-primary-dark transition-colors font-sans">
-            Request Custom Document <ArrowRight size={14} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://wa.me/919214830464?text=Hello%2C%20I%20need%20custom%20stone%20specifications%20for%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] text-white text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-xl font-sans"
+            >
+              <MessageCircle size={16} /> WhatsApp Sales Desk
+            </a>
+            <a
+              href="tel:+919214830464"
+              className="inline-flex items-center gap-2 border border-white/20 text-white text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-xl font-sans"
+            >
+              <Phone size={14} /> Call +91 92148 30464
+            </a>
+          </div>
         </div>
       </section>
     </div>

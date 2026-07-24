@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, ChevronRight, Layers, Ruler, Sparkles } from "lucide-react";
 import { PRODUCTS, CATEGORIES, type Product, type Category } from "@/data/products";
 
 function ProductCard({ product }: { product: Product }) {
-  const [imgIndex, setImgIndex] = useState(0);
+  const mainImage = product.images[0] || "/Kota Blue Stone.jpeg";
 
   return (
     <motion.div
@@ -17,64 +17,46 @@ function ProductCard({ product }: { product: Product }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.35 }}
-      className="group bg-white border border-gray-100 rounded-sm overflow-hidden flex flex-col hover:shadow-lg hover:border-gray-200 transition-all duration-300"
+      className="group bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col hover:shadow-xl hover:border-gray-200 transition-all duration-300"
     >
-      {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50 flex-shrink-0">
+      {/* Product Image */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
         <Image
-          src={product.images[imgIndex]}
+          src={mainImage}
           alt={product.name}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {/* Thumbnail strip */}
-        {product.images.length > 1 && (
-          <div className="absolute bottom-3 left-3 flex gap-1.5">
-            {product.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setImgIndex(i)}
-                className={`w-8 h-8 rounded-sm overflow-hidden border-2 transition-all ${
-                  i === imgIndex ? "border-white scale-110" : "border-white/40 hover:border-white/80"
-                }`}
-              >
-                <Image src={img} alt="" width={32} height={32} className="object-cover w-full h-full" />
-              </button>
-            ))}
-          </div>
-        )}
-        {/* In-stock badge */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+        <div className="absolute top-3 left-3">
+          <span className="text-[9px] tracking-[0.25em] font-bold uppercase bg-white/95 text-stone-gold px-3 py-1 rounded-full shadow-sm font-sans">
+            {CATEGORIES.find((c) => c.id === product.category)?.label}
+          </span>
+        </div>
         {product.inStock && (
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-[9px] tracking-widest font-bold uppercase text-primary px-2.5 py-1 rounded-full border border-primary/20">
-            In Stock
+          <div className="absolute top-3 right-3">
+            <span className="bg-primary/90 text-white text-[9px] tracking-widest font-bold uppercase px-2.5 py-1 rounded-full font-sans shadow-sm backdrop-blur-sm">
+              In Stock
+            </span>
           </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-6">
-        {/* Header */}
-        <div className="mb-4">
-          <span className="text-[9px] tracking-[0.3em] font-bold uppercase text-stone-gold font-sans block mb-1">
-            {CATEGORIES.find((c) => c.id === product.category)?.label}
-          </span>
-          <h3 className="font-serif text-xl font-medium text-neutral-dark leading-snug mb-1">
-            {product.name}
-          </h3>
-          <p className="text-gray-400 text-[11px] font-light italic">{product.tagline}</p>
-        </div>
-
-        {/* Description */}
-        <p className="text-gray-500 text-xs font-light leading-relaxed mb-5 line-clamp-3">
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="font-serif text-2xl font-medium text-neutral-dark leading-snug mb-1">
+          {product.name}
+        </h3>
+        <p className="text-gray-400 text-xs font-light italic mb-3">{product.tagline}</p>
+        <p className="text-gray-600 text-xs font-light leading-relaxed mb-6 line-clamp-2">
           {product.description}
         </p>
 
         {/* Spec Pills */}
         <div className="space-y-3 mb-6">
-          {/* Finishes */}
           <div className="flex gap-2 flex-wrap items-center">
-            <Sparkles size={12} className="text-stone-gold shrink-0" />
+            <Sparkles size={14} className="text-stone-gold shrink-0" />
             <div className="flex flex-wrap gap-1.5">
               {product.finishes.map((f) => (
                 <span
@@ -86,59 +68,27 @@ function ProductCard({ product }: { product: Product }) {
               ))}
             </div>
           </div>
-          {/* Thickness */}
           <div className="flex gap-2 items-center">
-            <Ruler size={12} className="text-stone-gold shrink-0" />
-            <span className="text-[10px] text-gray-500 font-sans">
-              {product.thickness.slice(0, 3).join(" · ")}
-              {product.thickness.length > 3 ? " · ..." : ""}
+            <Ruler size={14} className="text-stone-gold shrink-0" />
+            <span className="text-[11px] text-gray-500 font-sans">
+              {product.thickness.join(" · ")}
             </span>
-          </div>
-          {/* Applications */}
-          <div className="flex gap-2 items-start">
-            <Layers size={12} className="text-stone-gold shrink-0 mt-0.5" />
-            <span className="text-[10px] text-gray-500 font-sans leading-relaxed">
-              {product.applications.slice(0, 3).join(", ")}
-              {product.applications.length > 3 ? ` +${product.applications.length - 3} more` : ""}
-            </span>
-          </div>
-        </div>
-
-        {/* Sizes */}
-        <div className="mb-6 p-3 bg-neutral-light/50 rounded-sm border border-gray-100">
-          <span className="text-[9px] tracking-widest font-bold uppercase text-gray-400 font-sans block mb-2">
-            Available Sizes
-          </span>
-          <div className="flex flex-wrap gap-1.5">
-            {product.sizes.slice(0, 4).map((s) => (
-              <span
-                key={s}
-                className="text-[10px] font-sans text-primary bg-white border border-primary/20 px-2 py-0.5 rounded"
-              >
-                {s}
-              </span>
-            ))}
-            {product.sizes.length > 4 && (
-              <span className="text-[10px] font-sans text-gray-400 px-2 py-0.5">
-                +{product.sizes.length - 4} more
-              </span>
-            )}
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-auto flex gap-3">
+        <div className="mt-auto flex gap-3 pt-4 border-t border-gray-100">
           <Link
             href={`/contact?product=${encodeURIComponent(product.name)}`}
-            className="flex-1 text-center bg-primary text-white text-[11px] font-semibold tracking-widest uppercase py-3 px-4 rounded-sm hover:bg-primary/90 transition-colors font-sans"
+            className="flex-1 text-center bg-primary text-white text-[11px] font-semibold tracking-widest uppercase py-3 px-4 rounded-xl hover:bg-primary/90 transition-colors font-sans"
           >
             Enquire Now
           </Link>
           <Link
             href={`/products/${product.id}`}
-            className="flex items-center gap-1 border border-gray-200 text-gray-600 text-[11px] font-semibold tracking-widest uppercase py-3 px-4 rounded-sm hover:border-gray-300 transition-colors font-sans whitespace-nowrap"
+            className="flex items-center gap-1 border border-gray-200 text-gray-600 text-[11px] font-semibold tracking-widest uppercase py-3 px-4 rounded-xl hover:border-gray-300 transition-colors font-sans whitespace-nowrap"
           >
-            Details <ChevronRight size={12} />
+            Details <ChevronRight size={14} />
           </Link>
         </div>
       </div>
@@ -176,7 +126,7 @@ export default function ProductsClient() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id as Category | "all")}
-                  className={`text-[10px] font-sans font-bold tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-200 whitespace-nowrap ${
+                  className={`text-[10px] font-sans font-bold tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-200 whitespace-nowrap cursor-pointer ${
                     activeCategory === cat.id
                       ? "bg-primary text-white border-primary shadow-sm"
                       : "bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:text-gray-700"

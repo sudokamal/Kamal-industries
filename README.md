@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kamal Industries & Enterprises — Official Web Portal
 
-## Getting Started
+> **Authentic Kota Stone Manufacturer, Wholesaler & Global Exporter Since 1985**  
+> *Amarpura, Ramganjmandi, District Kota, Rajasthan – 326519, India*
 
-First, run the development server:
+---
+
+## 🌟 Overview
+
+The official enterprise portal for **Kamal Industries** (and international export division **Kamal Enterprises**). Built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**, this web application delivers an immersive, high-performance showcase of Rajasthan's finest natural limestone and quartzite products.
+
+---
+
+## ✨ Features & Capabilities
+
+### 🖼️ 1. Official Factory Gallery (32 Photos)
+- Single source of truth gallery system in `src/data/images.ts`.
+- Complete collection of 32 high-resolution photographs covering:
+  - **Factory Yard & Open Storage**: Raw block yards, finished stockyards, dispatch docks.
+  - **Products**: Machine-calibrated Kota Blue limestone, Kota Brown stone, Mandana Red quartzite, jumbo slabs, wall cladding, and stair treads.
+  - **Machinery**: Multi-blade gang saw cutting lines, automated tile calibrators, and CNC waterjets.
+  - **Packing & Dispatch**: Export-grade seaworthy wooden crate packaging and truck loading.
+- Categorized tab filtering (`All`, `Factory Yard`, `Products`, `Machinery`, `Packing`, `Workers`, `Office`).
+- Full-screen lightbox modal with keyboard navigation.
+
+### 🌐 2. Interactive Multi-Language Switcher
+- Built-in `LanguageSwitcher` in the desktop navbar and mobile drawer.
+- Instant client-side page translation via Google Translate engine.
+- Supported languages:
+  - 🇬🇧 English (`EN`)
+  - 🇮🇳 Hindi (`HI - हिन्दी`)
+  - 🇮🇳 Gujarati (`GU - ગુજરાતી`)
+  - 🇩🇪 German (`DE - Deutsch`)
+  - 🇪🇸 Spanish (`ES - Español`)
+  - 🇦🇪 Arabic (`AR - العربية`)
+- Remembers user's selected language in `localStorage` and translation cookies.
+
+### 🤖 3. Intelligent AI Support Chatbot & Help Console
+- Floating support widget (`GlobalUI.tsx`) providing:
+  - **AI Assistant**: Natural Language Processor with pretrained knowledge base on stone specifications, dimensions, finishes, pricing, logistics, and sample requests.
+  - **1-Click Quick Question Chips**: Scrollable prompt pills (e.g. *Sizes & Thickness*, *Colors & Finishes*, *Delivery Timelines*, *Wholesale Quote*, *Export Crates*, *Sample Request*).
+  - **Real-Time Typing Animation**: Smooth visual typing dots when the AI generates responses.
+  - **Direct Helpline Dialer & Email Ticket Desk**: Seamless fallback to live sales coordinator via email escalation.
+
+### 💎 4. Attractive Glassmorphic 3D Icon System (`Icon3D`)
+- Custom React component (`src/components/ui/Icon3D.tsx`) delivering jewel-toned metallic iconography.
+- Themes: `gold`, `emerald`, `blue`, `amber`, `charcoal`, `white`.
+- Features glassmorphism glow rings, specular highlights, and spring hover elevation (`scale: 1.08`, `rotateX: 8deg`).
+
+### 📦 5. Direct Wholesale Enquiry & Quote System
+- Interactive quote request form with Indian state dropdowns, stone specifications, and quantity calculators.
+- Powered by Prisma 7 & SQLite for enquiry tracking (`prisma/schema.prisma`).
+- Email notification integration via Gmail SMTP & Resend API (`src/app/api/support/route.ts`).
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 16.2 (App Router & Turbopack)
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS, Vanilla CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Database**: Prisma 7 ORM with SQLite (`prisma/enquiries.db`)
+- **Email Service**: Nodemailer & Resend API
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js**: v18.0.0 or higher
+- **npm**: v9.0.0 or higher
+
+### Installation & Local Setup
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/sudokamal/Kamal-industries.git
+cd Kamal-industries
+
+# 2. Install dependencies
+npm install
+
+# 3. Initialize Prisma Database
+npx prisma db push
+
+# 4. Start Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Production Build
 
-## Learn More
+To build the optimized production bundle:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© **Kamal Industries & Enterprises**. All rights reserved. Direct quarry-to-project supplier since 1985.

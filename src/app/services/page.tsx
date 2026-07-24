@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
@@ -74,7 +73,7 @@ const services = [
     title: "Quality Grading & Inspection",
     description:
       "Before any stone leaves our factory, it goes through a rigorous multi-stage grading process. Each piece is individually inspected for laminations, micro-cracks, colour variation, and dimensional accuracy. Only stone that passes all checks is packed for dispatch.",
-    image: "/kota-blue-2.jpeg",
+    image: "/Quality.jpeg",
     alt: "Kota Blue Stone quality inspection at Kamal Industries",
     points: [
       "Individual piece-by-piece hand inspection",
@@ -105,17 +104,7 @@ export default function ServicesPage() {
 
       {/* Page Header */}
       <section className="relative bg-neutral-dark text-white py-32 md:py-40 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/factory-yard-1.jpeg"
-            alt="Kamal Industries manufacturing facility — Amarpura, Ramganjmandi"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-dark/85 via-neutral-dark/65 to-neutral-dark/40" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-dark via-charcoal to-neutral-dark" />
 
         <Container className="relative z-10 max-w-4xl">
           <span className="text-[10px] md:text-xs tracking-[0.4em] font-bold uppercase text-stone-gold mb-5 block font-sans">
@@ -133,55 +122,37 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* Services — alternating layout */}
+      {/* Services — text list */}
       <div className="bg-white">
         {services.map((service, i) => (
           <div
             key={service.number}
             className={`border-b border-gray-100 ${i % 2 !== 0 ? "bg-neutral-light/20" : "bg-white"}`}
           >
-            <Container className="py-20 md:py-28">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${i % 2 !== 0 ? "direction-rtl" : ""}`}>
-
-                {/* Image */}
-                <div className={`relative aspect-[4/3] rounded-sm overflow-hidden shadow-lg ${i % 2 !== 0 ? "lg:order-2" : ""}`}>
-                  <Image
-                    src={service.image}
-                    alt={service.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  <div className="absolute top-5 left-5 bg-primary/90 backdrop-blur-sm text-white font-serif text-2xl font-light w-14 h-14 flex items-center justify-center rounded-sm">
-                    {service.number}
-                  </div>
+            <Container className="py-16 md:py-20">
+              <div className="max-w-3xl space-y-6">
+                <div>
+                  <span className="text-[9px] tracking-[0.3em] font-bold uppercase text-stone-gold font-sans block mb-2">
+                    Service {service.number}
+                  </span>
+                  <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark leading-tight">
+                    {service.title}
+                  </h2>
+                  <div className="w-12 h-[1.5px] bg-stone-gold mt-5" />
                 </div>
 
-                {/* Text */}
-                <div className={`space-y-6 ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
-                  <div>
-                    <span className="text-[9px] tracking-[0.3em] font-bold uppercase text-stone-gold font-sans block mb-2">
-                      Service {service.number}
-                    </span>
-                    <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-dark leading-tight">
-                      {service.title}
-                    </h2>
-                    <div className="w-12 h-[1.5px] bg-stone-gold mt-5" />
-                  </div>
+                <p className="text-gray-500 text-sm font-light leading-relaxed">
+                  {service.description}
+                </p>
 
-                  <p className="text-gray-500 text-sm font-light leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  <ul className="space-y-2.5">
-                    {service.points.map((point) => (
-                      <li key={point} className="flex items-start gap-3">
-                        <CheckCircle2 size={15} className="text-stone-gold shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-600 font-light">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="space-y-2.5">
+                  {service.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <CheckCircle2 size={15} className="text-stone-gold shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-600 font-light">{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Container>
           </div>
@@ -191,58 +162,38 @@ export default function ServicesPage() {
       {/* What We Manufacture */}
       <section className="py-20 bg-primary text-white">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <span className="text-[9px] tracking-[0.3em] font-bold uppercase text-stone-gold font-sans block">
-                What We Manufacture
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-white leading-tight">
-                Kota Stone Products — Direct from Factory
-              </h2>
-              <div className="w-12 h-[1.5px] bg-stone-gold" />
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  "Kota Blue Stone Flooring",
-                  "Kota Brown Stone Flooring",
-                  "Mandana Red Stone",
-                  "Large Format Slabs",
-                  "Wall Cladding Panels",
-                  "Steps & Stair Treads",
-                  "Custom Architectural Sizes",
-                  "Export-Grade Batches",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5">
-                    <ArrowRight size={12} className="text-stone-gold shrink-0" />
-                    <span className="text-sm text-white/80 font-light">{item}</span>
-                  </div>
-                ))}
-              </div>
+          <div className="max-w-3xl space-y-6">
+            <span className="text-[9px] tracking-[0.3em] font-bold uppercase text-stone-gold font-sans block">
+              What We Manufacture
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-white leading-tight">
+              Kota Stone Products — Direct from Factory
+            </h2>
+            <div className="w-12 h-[1.5px] bg-stone-gold" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                "Kota Blue Stone Flooring",
+                "Kota Brown Stone Flooring",
+                "Mandana Red Stone",
+                "Large Format Slabs",
+                "Wall Cladding Panels",
+                "Steps & Stair Treads",
+                "Custom Architectural Sizes",
+                "Export-Grade Batches",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-2.5">
+                  <ArrowRight size={12} className="text-stone-gold shrink-0" />
+                  <span className="text-sm text-white/80 font-light">{item}</span>
+                </div>
+              ))}
+            </div>
+            <div className="pt-4">
               <Link
                 href="/products"
-                className="inline-block bg-stone-gold text-neutral-dark text-[11px] font-bold tracking-widest uppercase px-8 py-4 rounded-sm hover:bg-stone-gold/90 transition-colors font-sans mt-2"
+                className="inline-block bg-stone-gold text-neutral-dark text-[11px] font-bold tracking-widest uppercase px-8 py-4 rounded-sm hover:bg-stone-gold/90 transition-colors font-sans"
               >
                 Browse All Products
               </Link>
-            </div>
-
-            {/* Factory photo grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { src: "/kota-blue-1.jpeg", alt: "Kota Blue Stone slab stock" },
-                { src: "/steps-1.jpeg", alt: "Kota Stone step treads" },
-                { src: "/kota-slab-1.jpeg", alt: "Wall cladding panels" },
-                { src: "/workers-loading-2.jpeg", alt: "Stone dispatch operations" },
-              ].map((img) => (
-                <div key={img.src} className="relative aspect-square rounded-sm overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover opacity-80 hover:opacity-100 transition-opacity"
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
             </div>
           </div>
         </Container>

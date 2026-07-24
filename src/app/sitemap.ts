@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/products/custom-cut",          priority: 0.8, changeFrequency: "monthly" as const },
     { url: "/gallery",               priority: 0.8, changeFrequency: "monthly" as const },
     { url: "/services",              priority: 0.7, changeFrequency: "monthly" as const },
-    { url: "/specifications",        priority: 0.7, changeFrequency: "monthly" as const },
     { url: "/downloads",             priority: 0.6, changeFrequency: "monthly" as const },
     { url: "/contact",               priority: 0.9, changeFrequency: "monthly" as const },
   ];

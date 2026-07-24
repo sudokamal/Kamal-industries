@@ -6,6 +6,7 @@ export type Category =
   | "flooring"
   | "wall-cladding"
   | "steps"
+  | "garden"
   | "custom-sizes";
 
 export interface Product {
@@ -13,8 +14,8 @@ export interface Product {
   name: string;
   tagline: string;
   category: Category;
-  categories: Category[]; // a product can belong to multiple categories
-  images: string[]; // real factory photos from /public
+  categories: Category[];
+  images: string[];
   description: string;
   applications: string[];
   sizes: string[];
@@ -32,6 +33,7 @@ export const CATEGORIES: { id: Category | "all"; label: string }[] = [
   { id: "flooring", label: "Flooring" },
   { id: "wall-cladding", label: "Wall Cladding" },
   { id: "steps", label: "Steps & Stairs" },
+  { id: "garden", label: "Garden & Outdoor Stone" },
   { id: "custom-sizes", label: "Custom Sizes" },
 ];
 
@@ -42,16 +44,24 @@ export const PRODUCTS: Product[] = [
     tagline: "Classic blue-grey limestone — the benchmark Indian flooring stone",
     category: "kota-blue",
     categories: ["kota-blue", "flooring"],
-    images: ["/kota-blue-1.jpeg", "/kota-blue-2.jpeg", "/kota-blue-3.jpeg"],
+    images: [
+      "/Kota Blue Stone.jpeg",
+      "/Gallery2.jpeg",
+      "/Gallery3.jpeg",
+      "/Gallery21.jpeg",
+      "/Gallery22.jpeg",
+      "/Quality.jpeg",
+    ],
     description:
       "Kota Blue Stone is the signature product of Kamal Industries. Quarried from the limestone belt of Ramganjmandi, this dense blue-grey stone is naturally slip-resistant, moisture-proof, and exceptionally durable. It requires no sealing and performs equally well indoors and outdoors. Each slab is machine-calibrated to ±1mm thickness tolerance for seamless installation.",
     applications: [
       "Interior flooring",
       "Exterior paving",
-      "Terrace & rooftop",
       "Commercial lobbies",
-      "Corridor flooring",
-      "Pathway paving",
+      "Residential flooring",
+      "Polished interior floors",
+      "Natural split paving",
+      "Large installed areas",
     ],
     sizes: [
       "12×12 inches",
@@ -72,15 +82,22 @@ export const PRODUCTS: Product[] = [
     tagline: "Large format Kota Blue slabs for premium architectural projects",
     category: "kota-blue",
     categories: ["kota-blue", "flooring"],
-    images: ["/kota-slab-2.jpeg", "/kota-blue-1.jpeg", "/factory-yard-1.jpeg"],
+    images: [
+      "/Large Format Slabs.jpeg",
+      "/Gallery1.jpeg",
+      "/Gallery12.jpeg",
+      "/Gallery20.jpeg",
+      "/cutting-machine-1.jpeg",
+    ],
     description:
       "Our large-format Kota Blue Stone slabs are cut from the finest quarry blocks selected for colour uniformity and freedom from lamination. Available in jumbo formats up to 4 feet × 8 feet, these slabs are ideal for premium lobbies, feature walls, and architectural cladding applications where an uninterrupted stone surface is required.",
     applications: [
-      "Architectural feature walls",
-      "Hotel lobbies",
-      "Large-format flooring",
-      "Reception counters",
-      "Landscape slabs",
+      "Large format slabs",
+      "Factory slabs",
+      "Warehouse slab inventory",
+      "Precision cut slabs",
+      "Premium architectural projects",
+      "Feature wall slabs",
     ],
     sizes: [
       "2×2 feet",
@@ -102,15 +119,20 @@ export const PRODUCTS: Product[] = [
     tagline: "Warm earthy tones — the premium brown variant of Kota Stone",
     category: "kota-brown",
     categories: ["kota-brown", "flooring"],
-    images: ["/kota-stone-1.jpeg", "/kota-stone-2.jpeg", "/factory-yard-2.jpeg"],
+    images: [
+      "/Kota Brown Stone.jpeg",
+      "/Gallery6.jpeg",
+      "/Types.jpeg",
+      "/Card.jpeg",
+    ],
     description:
       "Kota Brown Stone carries all the structural and performance attributes of Kota Blue Stone while offering a distinctly warmer, earthy colour palette — ranging from warm beige to soft chocolate brown. It is a premium choice for architects who want the durability of Kota Stone with a softer, more organic interior aesthetic.",
     applications: [
-      "Residential flooring",
+      "Indoor villa flooring",
+      "Outdoor pathways",
       "Villa exteriors",
       "Courtyard paving",
-      "Garden pathways",
-      "Retail interiors",
+      "Garden paving",
       "Heritage restorations",
     ],
     sizes: [
@@ -132,16 +154,20 @@ export const PRODUCTS: Product[] = [
     tagline: "The royal red stone of Rajasthan — quartzite with heritage character",
     category: "mandana",
     categories: ["mandana", "flooring"],
-    images: ["/stock-yard-1.jpeg", "/kota-stone-3.jpeg", "/factory-yard-3.jpeg"],
+    images: [
+      "/Mandana Red Stone.jpeg",
+      "/Gallery7.jpeg",
+      "/Card1.jpeg",
+    ],
     description:
       "Mandana Stone is a distinctive red quartzite sourced from the Mandana region of Kota district. Prized for its deep terracotta red colour and characterful natural-split surface, it has been used in Rajasthani architecture for centuries. Kamal Industries supplies Mandana Stone in calibrated sizes for both traditional and contemporary applications.",
     applications: [
-      "Traditional Rajasthani architecture",
-      "Courtyard flooring",
+      "Heritage buildings",
       "Temple flooring",
-      "Heritage restorations",
+      "Courtyard paving",
+      "Outdoor landscape",
+      "Traditional architecture",
       "Rustic interior flooring",
-      "Landscape paving",
     ],
     sizes: [
       "12×12 inches",
@@ -156,21 +182,52 @@ export const PRODUCTS: Product[] = [
     featured: true,
   },
   {
+    id: "large-format-slabs",
+    name: "Large Format Kota Stone Slabs",
+    tagline: "Jumbo slabs for hotel lobbies, commercial interiors and luxury residences",
+    category: "kota-blue",
+    categories: ["kota-blue", "flooring"],
+    images: [
+      "/Large Format Slabs.jpeg",
+      "/Gallery12.jpeg",
+      "/Gallery1.jpeg",
+      "/Gallery11.jpeg",
+    ],
+    description:
+      "Ultra-large format Kota Stone slabs for grand spaces. Precision calibrated with zero lamination, providing high flexural strength and seamless visual continuity for luxury hotel lobbies, commercial towers, and architectural facades.",
+    applications: [
+      "Hotel lobby flooring",
+      "Commercial interiors",
+      "Large architectural slabs",
+      "Premium residential projects",
+      "Large-format installations",
+    ],
+    sizes: ["2×4 feet", "3×4 feet", "4×4 feet", "4×8 feet jumbo"],
+    thickness: ["20mm", "25mm", "30mm", "40mm"],
+    finishes: ["Honed", "Polished", "Natural Split", "Leather"],
+    inStock: true,
+    featured: true,
+  },
+  {
     id: "wall-cladding",
     name: "Kota Stone Wall Cladding",
     tagline: "Split-face and sawn panels for premium exterior and interior walls",
     category: "wall-cladding",
     categories: ["wall-cladding", "kota-blue"],
-    images: ["/kota-slab-1.jpeg", "/kota-slab-3.jpeg", "/kota-blue-2.jpeg"],
+    images: [
+      "/Wall Cladding.jpeg",
+      "/Gallery13.jpeg",
+      "/Gallery22.jpeg",
+    ],
     description:
       "Our Kota Stone wall cladding panels are precision-cut and surface-treated for direct installation on both interior and exterior wall surfaces. Available in split-face, sawn, and honed finishes, these panels bring the natural texture and depth of authentic Kota Stone to vertical applications — feature walls, building facades, boundary walls, and more.",
     applications: [
-      "Building façades",
-      "Exterior boundary walls",
       "Interior feature walls",
+      "Exterior wall cladding",
+      "Split-face cladding",
+      "Modern wall panels",
+      "Stone facades",
       "Garden retaining walls",
-      "Swimming pool surrounds",
-      "Commercial interiors",
     ],
     sizes: [
       "6×12 inches",
@@ -191,16 +248,20 @@ export const PRODUCTS: Product[] = [
     tagline: "Calibrated step stone with natural slip resistance",
     category: "steps",
     categories: ["steps", "kota-blue"],
-    images: ["/steps-1.jpeg", "/steps-2.jpeg", "/steps-3.jpeg"],
+    images: [
+      "/Stairs.jpeg",
+      "/Gallery14.jpeg",
+      "/Gallery10.jpeg",
+    ],
     description:
       "Kota Stone is one of the finest natural materials for stair treads, owing to its inherent slip resistance, hardness, and ability to withstand decades of heavy foot traffic without abrasion. Our stair stone is supplied in full step sizes — riser and tread — cut to standard or custom dimensions, with a variety of edge profiles available on request.",
     applications: [
-      "Residential staircases",
-      "Commercial staircases",
-      "Public buildings",
-      "Outdoor steps",
+      "Indoor staircases",
+      "Outdoor staircases",
+      "Commercial stairs",
+      "Residential stairs",
+      "Stair treads & risers",
       "Garden terracing",
-      "Hotel lobbies",
     ],
     sizes: [
       "4 inch × 12 inch (riser)",
@@ -214,19 +275,57 @@ export const PRODUCTS: Product[] = [
     featured: false,
   },
   {
+    id: "garden-outdoor-stone",
+    name: "Garden & Outdoor Stone",
+    tagline: "All-weather natural stone for pathways, driveways and garden paving",
+    category: "garden",
+    categories: ["garden", "flooring"],
+    images: [
+      "/Garden.jpeg",
+      "/Gallery15.jpeg",
+      "/Gallery2.jpeg",
+    ],
+    description:
+      "Robust Kota Stone cut for outdoor landscaping, garden pathways, pool surrounds, driveways, and farm terrace paving. Extremely weather-resistant for all Indian climates, slip-resistant when wet, and virtually maintenance-free.",
+    applications: [
+      "Garden pathways",
+      "Landscape paving",
+      "Pool decks",
+      "Patios & verandas",
+      "Driveways & parking",
+      "Outdoor seating areas",
+    ],
+    sizes: [
+      "12×12 inches",
+      "12×18 inches",
+      "18×18 inches",
+      "24×24 inches",
+      "Custom landscape cuts",
+    ],
+    thickness: ["25mm", "30mm", "40mm", "50mm"],
+    finishes: ["Natural Split", "Sandblasted", "Flamed"],
+    inStock: true,
+    featured: true,
+  },
+  {
     id: "custom-cut",
     name: "Custom Cut Stone",
     tagline: "Bespoke sizing for architects and project contractors",
     category: "custom-sizes",
     categories: ["custom-sizes", "kota-blue", "kota-brown"],
-    images: ["/cutting-machine-1.jpeg", "/cutting-machine-2.jpeg", "/cutting-machine-3.jpeg"],
+    images: [
+      "/cutting-machine-3.jpeg",
+      "/cutting-machine-1.jpeg",
+      "/cutting-machine-2.jpeg",
+      "/Gallery16.jpeg",
+    ],
     description:
       "Kamal Industries operates precision CNC and diamond-blade cutting equipment capable of producing stone to any custom dimension provided in architectural drawings. From non-standard tile formats to bespoke countertop slabs, sill stones, rebated thresholds, and bullnosed pool copings — our custom cutting service handles every specification. Minimum order quantities apply.",
     applications: [
       "Architectural projects",
-      "Swimming pool copings",
+      "CNC waterjet custom cuts",
       "Window sills & thresholds",
-      "Countertops",
+      "Countertops & worktops",
       "Landscape features",
       "Export packing orders",
     ],

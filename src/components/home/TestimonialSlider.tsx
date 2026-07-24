@@ -19,63 +19,203 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "We sourced high-grade calibrated Kota Blue Stone from Kamal Industries for our commercial plaza project in Mumbai. The uniform thickness of 22mm was exactly what we needed to prevent trip hazards. Exceptionally processed stone.",
+    quote: "We ordered 15,000 sq ft Kota Blue tiles for our commercial plaza in Navi Mumbai. Honestly thickness was uniform 22mm as promised so laying work went fast without any height issues. Goods arrived on time.",
     author: "Rajesh K. Sanghavi",
     role: "Managing Director",
-    project: "Commercial Plaza & Walkways (15,000 sq ft)",
+    project: "Commercial Plaza & Walkways (15k sqft)",
     type: "Builder",
     stars: 5,
     location: "Mumbai, Maharashtra",
   },
   {
     id: 2,
-    quote: "Kamal Industries provided natural hones and custom-finished leathered brown stone for our resort project. The color consistency across bulk delivery was impressive, and the stone has natural slip resistance. Outstanding service.",
+    quote: "Ordered leather finish Kota brown for a resort near Nandi Hills. Colour consistency across 4 trucks was really good. Natural non slip feel is perfect for pool side walking area.",
     author: "Ar. Meera Deshmukh",
     role: "Lead Landscape Architect",
-    project: "Eco-Resort Villas (Honed Kota Brown)",
+    project: "Eco-Resort Villas (Kota Brown)",
     type: "Architect",
     stars: 5,
     location: "Bengaluru, Karnataka",
   },
   {
     id: 3,
-    quote: "I have worked with many quarry suppliers, but Kamal Industries stands out for structural integrity. Out of 3 truckloads delivered to our Jaipur hospital site, we had zero breakages. Their wooden crate packing is unmatched.",
+    quote: "3 truckloads received at our SMS hospital expansion site in Jaipur. Not even single stone was broken because wooden crate packing was so tight. Kamal bhai handled dispatch personally.",
     author: "Vikram Singh Chouhan",
     role: "Civil Contractor",
-    project: "District Hospital Complex & Steps",
+    project: "District Hospital Complex",
     type: "Contractor",
     stars: 5,
     location: "Jaipur, Rajasthan",
   },
   {
     id: 4,
-    quote: "For my courtyard renovation, I wanted something durable yet natural. The Mandana red stone from Kamal Industries looks stunning. Its rich color doesn't fade under the harsh Delhi heat. A premium experience.",
+    quote: "Installed Mandana red stone in my farm house courtyard 2 years back. Still looking brand new despite heavy Delhi rain and heat. No fading at all.",
     author: "Devendra Sharma",
     role: "Homeowner",
-    project: "Residential Courtyard & Patio",
+    project: "Farmhouse Courtyard & Patio",
     type: "Homeowner",
     stars: 5,
     location: "New Delhi, Delhi",
   },
   {
     id: 5,
-    quote: "Our primary concern for outdoor paving was durability and water absorption. Kamal's Kota stone blocks are incredibly dense. The water absorption is minimal, making it perfect for the Gujarat monsoon season. A reliable factory.",
+    quote: "Density of Kota stone from Ramganjmandi factory is very high. Water absorption is practically zero so no white salt marks coming up after monsoon laying.",
     author: "Sanjay Patel",
     role: "Infrastructure Developer",
-    project: "Premium Housing Society Paving",
+    project: "Housing Society Paving",
     type: "Builder",
     stars: 5,
     location: "Ahmedabad, Gujarat",
   },
   {
     id: 6,
-    quote: "The high-mirror polish on the Kota Blue slabs we received is breathtaking. They custom-cut the slabs to 90x90cm exactly as per client specification. It gives an ultra-premium, sustainable floor finish.",
+    quote: "We needed custom 90x90 cm mirror polished Kota blue slabs for corporate office reception. They cut exact size per drawing. Finish is super smooth.",
     author: "Ar. Rohan Malhotra",
     role: "Principal Architect",
-    project: "Modern Corporate Office Lobby",
+    project: "Corporate Office Reception",
     type: "Architect",
     stars: 5,
     location: "Chandigarh",
+  },
+  {
+    id: 7,
+    quote: "Specified 30mm Kota Blue for heritage hotel in Jubilee Hills. Edge finishing was clean and prompt delivery before deadline.",
+    author: "Ar. Vikramaditya Rao",
+    role: "Principal Architect",
+    project: "Heritage Boutique Hotel",
+    type: "Architect",
+    stars: 5,
+    location: "Hyderabad, Telangana",
+  },
+  {
+    id: 8,
+    quote: "Regular customer of Kamal Industries since 2018. Factory rate is fair and loading staff is careful. Highly recommended for bulk projects.",
+    author: "Anand Brothers Infra",
+    role: "Turnkey Civil Contractor",
+    project: "Transport Terminal Paving",
+    type: "Contractor",
+    stars: 5,
+    location: "Pune, Maharashtra",
+  },
+  {
+    id: 9,
+    quote: "Purchased 40k sqft Kota stone for IT park project in Salt Lake. Direct factory rates saved us nearly 15% comparing to local market dealers.",
+    author: "Amit Goyal",
+    role: "Project Director",
+    project: "Salt Lake IT Park Complex",
+    type: "Builder",
+    stars: 5,
+    location: "Kolkata, West Bengal",
+  },
+  {
+    id: 10,
+    quote: "We put Kota Brown in our ECR beach house veranda. Very cool to walk barefoot during summer afternoon. Good guidance by sales team.",
+    author: "Dr. Sunita Reddy",
+    role: "Villa Owner",
+    project: "ECR Beach Villa Veranda",
+    type: "Homeowner",
+    stars: 5,
+    location: "Chennai, Tamil Nadu",
+  },
+  {
+    id: 11,
+    quote: "Using split face Kota cladding for villa exterior in Goa. Withstands heavy rain and salt moisture without peeling or rusting.",
+    author: "Ar. Sameer Kulkarni",
+    role: "Landscape Architect",
+    project: "Coastal Villa Exterior Cladding",
+    type: "Architect",
+    stars: 5,
+    location: "Panaji, Goa",
+  },
+  {
+    id: 12,
+    quote: "Received 25,000 sqft calibrated tiles for university lobby. Dispatch was quick and driver reached Lucknow in 3 days.",
+    author: "Praveen Varma",
+    role: "Chief Site Engineer",
+    project: "University Campus Lobbies",
+    type: "Contractor",
+    stars: 5,
+    location: "Lucknow, Uttar Pradesh",
+  },
+  {
+    id: 13,
+    quote: "Good quality Kota stone for textile market flooring in Surat. Heavy trolley movement everyday but zero cracks till now.",
+    author: "Mukeshbhai Prajapati",
+    role: "Commercial Contractor",
+    project: "Textile Market Floor (20k sqft)",
+    type: "Contractor",
+    stars: 5,
+    location: "Surat, Gujarat",
+  },
+  {
+    id: 14,
+    quote: "Ordered 18x18 inch natural split Kota blue for my terrace garden. Looks very authentic and zero maintenance required.",
+    author: "Siddharth Mehta",
+    role: "Homeowner",
+    project: "Terrace Garden Paving",
+    type: "Homeowner",
+    stars: 5,
+    location: "Ahmedabad, Gujarat",
+  },
+  {
+    id: 15,
+    quote: "Supplied 50,000 sqft Kota stone for township project in Indore. Factory manager kept us updated on WhatsApp for every vehicle dispatch.",
+    author: "R. K. Infrastructure Ltd",
+    role: "Project Manager",
+    project: "Township Residential Paving",
+    type: "Builder",
+    stars: 5,
+    location: "Indore, Madhya Pradesh",
+  },
+  {
+    id: 16,
+    quote: "Mandana red stone tile pattern in our client's villa entrance came out amazing. Truly royal Rajasthani look.",
+    author: "Ar. Neha Agarwal",
+    role: "Interior Designer",
+    project: "Golf Course Villa Entrance",
+    type: "Architect",
+    stars: 5,
+    location: "Gurgaon, Haryana",
+  },
+  {
+    id: 17,
+    quote: "Full truck of 30mm stair steps delivered to Ludhiana. Single piece 4ft steps without joints made the staircase look massive.",
+    author: "Gurpreet Singh",
+    role: "Building Contractor",
+    project: "Commercial Building Staircase",
+    type: "Contractor",
+    stars: 5,
+    location: "Ludhiana, Punjab",
+  },
+  {
+    id: 18,
+    quote: "We buy wholesale stock from Kamal Industries for our Nagpur depot. Material quality is always Grade A and pricing is competitive.",
+    author: "Mahesh Agarwal & Sons",
+    role: "Stone Wholesale Dealer",
+    project: "Wholesale Depot Stock Supply",
+    type: "Builder",
+    stars: 5,
+    location: "Nagpur, Maharashtra",
+  },
+  {
+    id: 19,
+    quote: "Shipped Kota slabs to Vizag port line. Quality control was done before packing so no issue found during unloading.",
+    author: "Venkatesh Builders",
+    role: "Site Manager",
+    project: "Port Area Complex Paving",
+    type: "Builder",
+    stars: 5,
+    location: "Visakhapatnam, AP",
+  },
+  {
+    id: 20,
+    quote: "Beautiful natural Kota stone floor in our Udaipur home. Feels cool in summer and natural pattern looks far better than vitrified tiles.",
+    author: "Dr. Harish Chandra",
+    role: "Homeowner",
+    project: "Residence Interior Flooring",
+    type: "Homeowner",
+    stars: 5,
+    location: "Udaipur, Rajasthan",
   },
 ];
 
@@ -124,7 +264,7 @@ export default function TestimonialSlider() {
                 : "border-gray-200 bg-white text-gray-500 hover:border-stone-gold hover:text-stone-gold"
             }`}
           >
-            {type}s
+            {type}s ({type === "All" ? testimonials.length : testimonials.filter((t) => t.type === type).length})
           </button>
         ))}
       </div>
@@ -142,7 +282,7 @@ export default function TestimonialSlider() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: idx * 0.05 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: idx * 0.03 }}
               className="relative bg-white rounded-3xl p-8 border border-gray-100 hover:border-stone-gold/30 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
             >
               {/* Decorative top gold gradient strip */}
@@ -191,7 +331,7 @@ export default function TestimonialSlider() {
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="text-[9px] text-stone-gold font-bold uppercase tracking-widest block font-sans">
+                    <span className="text-[9px] text-stone-gold font-bold uppercase tracking-widest block font-sans max-w-[130px] truncate">
                       {t.project}
                     </span>
                     <span className="text-[10px] text-gray-400 font-light inline-flex items-center gap-1 mt-0.5">

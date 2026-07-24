@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       "Browse the complete range of Kota Blue Stone, Kota Brown Stone, Mandana Stone, flooring slabs, wall cladding, stair stone, and custom cut stone products from Kamal Industries, Ramganjmandi, Kota, Rajasthan.",
     images: [
       {
-        url: "/hero-1.jpeg",
+        url: "/HomePage.jpeg",
         width: 1200,
         height: 630,
         alt: "Kamal Industries Kota Stone product range showcase",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Our Kota Stone & Mandana Stone Product Range | Kamal Industries",
     description:
       "Browse the complete range of Kota Blue Stone, Kota Brown Stone, Mandana Stone, flooring slabs, wall cladding, stair stone, and custom cut stone products from Kamal Industries.",
-    images: ["/hero-1.jpeg"],
+    images: ["/HomePage.jpeg"],
   },
 };
 
@@ -45,11 +45,12 @@ export default function ProductsPage() {
       <section className="relative bg-neutral-dark text-white py-28 md:py-36 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/hero-1.jpeg"
+            src="/HomePage.jpeg"
             alt="Kamal Industries Kota Stone product range"
             fill
             priority
             className="object-cover opacity-30"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-dark/80 via-neutral-dark/60 to-neutral-dark" />
         </div>
@@ -61,10 +62,19 @@ export default function ProductsPage() {
             Our Stone<br />
             <span className="italic font-normal text-stone-gold">Product Range</span>
           </h1>
-          <p className="font-sans text-gray-300 text-sm md:text-base font-light max-w-xl leading-relaxed">
+          <p className="font-sans text-gray-300 text-sm md:text-base font-light max-w-xl leading-relaxed mb-6">
             Directly manufactured and supplied from our factory in Amarpura, Ramganjmandi.
             Every product shown uses our actual factory photographs — no stock images.
           </p>
+          <a
+            href="/Kamal_Industries_Kota_Stone_Catalogue.pdf"
+            download="Kamal_Industries_Kota_Stone_Catalogue.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-stone-gold hover:bg-stone-gold-dark text-slate-950 text-[11px] font-bold tracking-widest uppercase px-6 py-3 rounded-xl transition-all duration-200 font-sans shadow-md"
+          >
+            Download Product Catalogue (PDF)
+          </a>
 
           {/* Quick stat bar */}
           <div className="flex flex-wrap gap-8 mt-10 pt-8 border-t border-white/10">

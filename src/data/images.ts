@@ -1,86 +1,69 @@
 /**
- * SINGLE SOURCE OF TRUTH for all real factory photographs.
- * All images are actual photos from Kamal Industries, Amarpura, Ramganjmandi.
- * Never replace these with AI-generated or stock images.
+ * Single source of truth for gallery data using public images.
  */
 
-// ─── HERO SLIDES ────────────────────────────────────────────────────────────
 export const heroImages = [
-  { src: "/hero-1.jpeg", alt: "Kamal Industries stone yard — stacked Kota Stone slabs ready for dispatch" },
-  { src: "/hero-2.jpeg", alt: "Kamal Industries factory — large stone stock yard, Ramganjmandi" },
-  { src: "/hero-3.jpeg", alt: "Kamal Industries — factory building and processing yard, Kota, Rajasthan" },
+  { src: "/HomePage.jpeg", alt: "Kamal Industries — Authentic Kota Stone Manufacturer" },
+  { src: "/HomePage1.jpeg", alt: "Precision Calibrated Kota Blue Slabs Yard" },
+  { src: "/HomePage2.jpeg", alt: "Mandana Red Stone & Architectural Stone Inventory" },
 ];
 
-// ─── KOTA BLUE STONE ────────────────────────────────────────────────────────
-export const kotaBlueImages = [
-  { src: "/kota-blue-1.jpeg", alt: "Kota Blue Stone slabs stacked at Kamal Industries factory yard" },
-  { src: "/kota-blue-2.jpeg", alt: "Premium Kota Blue Stone batch — calibrated slabs ready for packing" },
-  { src: "/kota-blue-3.jpeg", alt: "Kota Blue Stone flooring tiles in production yard" },
-];
-
-// ─── KOTA STONE / FLOORING SLABS ────────────────────────────────────────────
-export const kotaStoneImages = [
-  { src: "/kota-stone-1.jpeg", alt: "Kota Stone flooring slabs — overhead view of production yard" },
-  { src: "/kota-stone-2.jpeg", alt: "Large format Kota Stone slabs laid out for grading" },
-  { src: "/kota-stone-3.jpeg", alt: "Kota Stone stock — calibrated slabs in yard" },
-];
-
-// ─── KOTA STONE SLABS / WALL CLADDING ──────────────────────────────────────
-export const kotaSlabImages = [
-  { src: "/kota-slab-1.jpeg", alt: "Kota Stone slabs — split face wall cladding stock" },
-  { src: "/kota-slab-2.jpeg", alt: "Kota Stone slab inventory stacked in factory yard" },
-  { src: "/kota-slab-3.jpeg", alt: "Large Kota Stone slab batches with large-format tiles" },
-];
-
-// ─── STEPS / STAIR STONE ────────────────────────────────────────────────────
-export const stepImages = [
-  { src: "/steps-1.jpeg", alt: "Kota Stone step risers and stair treads stacked vertically" },
-  { src: "/steps-2.jpeg", alt: "Calibrated Kota Stone step stock at Kamal Industries" },
-  { src: "/steps-3.jpeg", alt: "Stair stone — thick Kota Blue slabs for step application" },
-  { src: "/steps-4.jpeg", alt: "Step stone inventory, Kamal Industries yard" },
-];
-
-// ─── FACTORY YARD ────────────────────────────────────────────────────────────
-export const factoryYardImages = [
-  { src: "/factory-yard-1.jpeg", alt: "Kamal Industries stone processing yard with stacked slabs" },
-  { src: "/factory-yard-2.jpeg", alt: "Wide view of factory yard with organised stone stock" },
-  { src: "/factory-yard-3.jpeg", alt: "Factory yard panorama — thousands of Kota Stone slabs" },
-];
-
-// ─── CUTTING MACHINERY ───────────────────────────────────────────────────────
-export const machineryImages = [
-  { src: "/cutting-machine-1.jpeg", alt: "Stone cutting machine in operation at Kamal Industries factory" },
-  { src: "/cutting-machine-2.jpeg", alt: "Diamond saw cutting Kota Stone slabs with water coolant" },
-  { src: "/cutting-machine-3.jpeg", alt: "Worker operating stone cutting machinery at Kamal Industries" },
-];
-
-// ─── WORKERS ────────────────────────────────────────────────────────────────
-export const workerImages = [
-  { src: "/workers-loading-1.jpeg", alt: "Workers loading Kota Stone slabs onto transport vehicle" },
-  { src: "/workers-loading-2.jpeg", alt: "Worker carrying stone slab at Kamal Industries" },
-  { src: "/workers-loading-3.jpeg", alt: "Stone handling team at Kamal Industries factory yard" },
-];
-
-// ─── STOCK YARD ──────────────────────────────────────────────────────────────
-export const stockYardImages = [
-  { src: "/stock-yard-1.jpeg", alt: "Aerial view of stone stock yard at Kamal Industries" },
-  { src: "/stock-yard-2.jpeg", alt: "Massive Kota Stone inventory at factory yard" },
-];
-
-// ─── SIGNAGE ─────────────────────────────────────────────────────────────────
-export const signageImages = {
-  ki: { src: "/ki-signage.jpeg", alt: "Kamal Industries company signboard, Amarpura, Ramganjmandi" },
-  ke: { src: "/ke-signage.jpeg", alt: "Kamal Enterprises company signboard" },
+export const productCategoryImages = {
+  kotaBlue: "/Kota Blue Stone.jpeg",
+  kotaBrown: "/Kota Brown Stone.jpeg",
+  mandana: "/Mandana Red Stone.jpeg",
+  slabs: "/Large Format Slabs.jpeg",
+  stairs: "/Stairs.jpeg",
+  cladding: "/Wall Cladding.jpeg",
+  garden: "/Garden.jpeg",
+  customCut: "/cutting-machine-3.jpeg",
 };
 
-// ─── ALL GALLERY IMAGES (for gallery page) ───────────────────────────────────
+export const processImages = {
+  quarry: "/step-1-quarry.png",
+  cutting1: "/cutting-machine-1.jpeg",
+  cutting2: "/cutting-machine-2.jpeg",
+  cutting3: "/cutting-machine-3.jpeg",
+  quality: "/Quality.jpeg",
+  packing: "/Packing.jpeg",
+  workers1: "/workers-loading-1.jpeg",
+  workers2: "/workers-loading-2.jpeg",
+  delivery: "/Delivery.jpeg",
+  office: "/Office.jpeg",
+  types: "/Types.jpeg",
+};
+
 export const allGalleryImages = [
-  ...kotaBlueImages,
-  ...kotaStoneImages,
-  ...kotaSlabImages,
-  ...stepImages,
-  ...factoryYardImages,
-  ...machineryImages,
-  ...workerImages,
-  ...stockYardImages,
+  { src: "/Gallery1.jpeg", category: "Factory Yard", title: "Kota Stone Slab Storage Yard" },
+  { src: "/Gallery2.jpeg", category: "Products", title: "Calibrated Kota Blue Stone Tiles" },
+  { src: "/Gallery3.jpeg", category: "Products", title: "Polished Kota Blue Limestone" },
+  { src: "/Gallery4.jpeg", category: "Machinery", title: "Diamond Gang Saw Cutting Line" },
+  { src: "/Gallery5.jpeg", category: "Machinery", title: "Precision Tile Calibrator" },
+  { src: "/Gallery6.jpeg", category: "Products", title: "Kota Brown Stone Slabs" },
+  { src: "/Gallery7.jpeg", category: "Products", title: "Mandana Red Quartzite Inventory" },
+  { src: "/Gallery8.jpeg", category: "Packing", title: "Export Wooden Crate Packing" },
+  { src: "/Gallery9.jpeg", category: "Packing", title: "Palletised Stone Consignment" },
+  { src: "/Gallery10.jpeg", category: "Workers", title: "Master Stone Cutters at Work" },
+  { src: "/Gallery11.jpeg", category: "Factory Yard", title: "Main Factory Campus — Ramganjmandi" },
+  { src: "/Gallery12.jpeg", category: "Products", title: "Large Format Jumbo Slabs" },
+  { src: "/Gallery13.jpeg", category: "Products", title: "Split-Face Wall Cladding Panels" },
+  { src: "/Gallery14.jpeg", category: "Products", title: "Kota Stone Stair Treads & Risers" },
+  { src: "/Gallery15.jpeg", category: "Products", title: "Garden & Landscape Paving Slabs" },
+  { src: "/Gallery16.jpeg", category: "Machinery", title: "CNC Waterjet Cutting Station" },
+  { src: "/Gallery17.jpeg", category: "Machinery", title: "Multi-Head Continuous Polisher" },
+  { src: "/Gallery18.jpeg", category: "Packing", title: "Container Loading for Export" },
+  { src: "/Gallery19.jpeg", category: "Workers", title: "Quality Control & Thickness Verification" },
+  { src: "/Gallery20.jpeg", category: "Factory Yard", title: "Raw Limestone Block Yard" },
+  { src: "/Gallery21.jpeg", category: "Products", title: "Honed Surface Finish Samples" },
+  { src: "/Gallery22.jpeg", category: "Products", title: "Natural Split Texture Slabs" },
+  { src: "/Gallery23.jpeg", category: "Packing", title: "Fumigated Wooden Pallet Storage" },
+  { src: "/Gallery24.jpeg", category: "Factory Yard", title: "Dispatch Loading Dock" },
+  { src: "/Gallery25.jpeg", category: "Office", title: "Kamal Industries Factory Office" },
+  { src: "/Gallery26.jpeg", category: "Products", title: "Precision Calibrated Kota Blue Tiles Stack" },
+  { src: "/Gallery27.jpeg", category: "Factory Yard", title: "Outdoor Factory Stockyard & Finished Tiles" },
+  { src: "/Gallery28.jpeg", category: "Products", title: "Bulk Kota Stone Flooring Inventory" },
+  { src: "/Gallery29.jpeg", category: "Packing", title: "Truckbed Loading & Dispatch Preparation" },
+  { src: "/Gallery30.jpeg", category: "Factory Yard", title: "Factory Campus Open Storage Yard" },
+  { src: "/Gallery31.jpeg", category: "Workers", title: "Factory Workers Loading Stone Transport Truck" },
+  { src: "/Gallery32.jpeg", category: "Products", title: "Stacked Kota Stone Calibrated Flooring Slabs" },
 ];

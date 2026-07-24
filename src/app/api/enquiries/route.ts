@@ -44,6 +44,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Email format validation if email is provided
+    const emailTrimmed = body.email?.trim() || "";
+    if (emailTrimmed && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
+
     // Save to database
     const enquiry = await prisma.enquiry.create({
       data: {
@@ -51,7 +60,7 @@ export async function POST(request: NextRequest) {
         companyName:            body.companyName?.trim() || null,
         phone:                  body.phone?.trim(),
         whatsapp:               body.whatsapp?.trim() || null,
-        email:                  body.email?.trim() || null,
+        email:                  emailTrimmed || null,
         state:                  body.state?.trim() || null,
         city:                   body.city?.trim() || null,
         productRequired:        body.productRequired?.trim() || null,
@@ -67,17 +76,25 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Send emails asynchronously (don't block the response)
+    // Send emails reliably
     const emailData = { ...enquiry };
-    Promise.all([
-      sendOwnerNotification(emailData).catch((e) => console.error("[email:owner]", e)),
-      sendCustomerConfirmation(emailData).catch((e) => console.error("[email:customer]", e)),
-    ]);
+    let emailStatus = "delivered";
+    try {
+      await Promise.all([
+        sendOwnerNotification(emailData),
+        sendCustomerConfirmation(emailData).catch((e) => console.error("[email:customer]", e)),
+      ]);
+      console.log("[POST /api/enquiries] All email notifications dispatched successfully.");
+    } catch (emailErr) {
+      console.error("[POST /api/enquiries] Email dispatch warning:", emailErr);
+      emailStatus = "saved_offline";
+    }
 
     return NextResponse.json({
       success: true,
       id: enquiry.id,
-      message: "Thank you! Your enquiry has been received successfully. Our sales team will contact you shortly.",
+      emailStatus,
+      message: "Thank you! Your quote request has been received successfully. Our sales team will contact you shortly.",
     });
   } catch (error) {
     console.error("[POST /api/enquiries]", error);

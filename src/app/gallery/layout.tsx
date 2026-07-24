@@ -17,19 +17,19 @@ export const metadata: Metadata = {
       "Browse our portfolio of 60+ real factory, office, worker, stone cutting, packing, and loading pictures at Kamal Industries, Amarpura, Ramganjmandi. No AI or stock photos.",
     images: [
       {
-        url: "/hero-1.jpeg",
+        url: "/HomePage1.jpeg",
         width: 1200,
         height: 630,
-        alt: "Kamal Industries factory yard, Amarpura, Ramganjmandi",
+        alt: "Kamal Industries Kota Stone factory yard in Ramganjmandi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Authentic Factory Gallery — 100% Real Pictures | Kamal Industries",
+    title: "Factory Gallery — Kota Stone Yard & Machinery | Kamal Industries",
     description:
-      "Browse our portfolio of 60+ real factory, office, worker, stone cutting, packing, and loading pictures at Kamal Industries, Amarpura, Ramganjmandi.",
-    images: ["/hero-1.jpeg"],
+      "Explore 25+ authentic factory photographs of Kamal Industries. Amarpura, Ramganjmandi, Kota, Rajasthan.",
+    images: ["/HomePage1.jpeg"],
   },
 };
 
